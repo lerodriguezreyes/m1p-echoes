@@ -1,18 +1,75 @@
-ul#menu {
-    list-style-type: none }
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #555;
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 10pt
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 20px;
+}
+
+h1 {
+  font-size: 150px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+#landing-screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-width: 100px;  
+  height: 600px;
+  max-width: 600px;
+  margin: auto;
+  padding: 25px;
+  background-image: url(https://prompthero.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt3TlRBNFlqZzJOUzA1WVdJMkxUUXlZV1V0T1dZME1pMHdNR1F3TmprME4ySXhPREFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bd34b9e9ce5bc68d800eec32e7ae9ab7daebcc2f/prompthero-prompt-58d830c1fbd.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#menu-buttons{
+  align-content: flex-end;
+  align-items: justify;
+}
+
+footer {
+  background-color: #000;
+  color: #555;a
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 10pt
+}
+
+p.love {
+  text-align: center;
+}
+
+p.credits {
+  text-align: right;
+
+}
 
 hr.rounded {
-    border-top: 8px solid #05881b;
-    border-radius: 5px;
-  }
-
-  
-  html,body {
-    background-color: #000;
-    background-image: url(media/background/page.png);
-    color: #555;
-    font-family: helvetica, arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    font-size: 10pt;
+  border-top: 2px solid #05881b;
+  border-radius: 2px;
+  width: 100%;
 }

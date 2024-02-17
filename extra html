@@ -1,0 +1,49 @@
+
+    
+ 
+        <section="landing-page" class="view">
+                
+        </section>    
+            <div class="content">
+            <div id="question"></div>
+            <ul id="choices"></ul>
+            </div>
+
+             </section> 
+       
+          
+
+
+
+
+
+
+        </section>
+        <!  --
+        <!-- The section below is the room prototype structure, that contains: . -->         
+        
+        <section class="rooms">
+            <div id="" class="view" style="display: none">
+                <div id="result-progress">
+                <div id="resultProgressBar"></div>
+                </div>
+                <p class="emphasis">Results</p>
+                <div class="content">
+                <div id="result"></div>
+                </div>
+                <button id="restartButton" class="button-secondary">Restart Quiz</button>
+            </div>
+        </section>
+        
+        <section class="game-won-or-over-screen">
+            <div id="orb-room" class="view" style="display: none">
+                <div id="result-progress">
+                <div id="resultProgressBar"></div>
+                </div>
+                <p class="emphasis">Results</p>
+                <div class="content">
+                <div id="result"></div>
+                </div>
+                <button id="restartButton" class="button-secondary">Restart Quiz</button>
+            </div>
+       

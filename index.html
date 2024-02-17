@@ -4,34 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href= "./style/style.css" />
+    <link rel="stylesheet" href= "./styles/style.css" />
     <title> Echoes from Beyond </title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/30/monster-mouth.png" alt="monster-mouth"/>
 </head>
 
 <body>
-    <section>
-        <h2>Transcendent</h2>
-        <h1>Echoes</h1>    
-    </section>
-      
-    <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
-    <id="game-icon" img width="90" height="90" src="https://img.icons8.com/ios-glyphs/90/000000/detective--v1.png" alt="detective"/>
-    </div>
-    
-    <div id="menu">
-        <ul>
-            <li> new game </li>
-            <li> high scores </li>
-        </ul>
-    </div>  
+    <!-- This is the frame/tvbox structure for the game content -->
+    <main class="game-frame">  
+    <header>
+        <div><h2>Transcendent</h2></div> 
+        <div><h1>Echoes</h1></div> 
+    </header> 
+    <!-- The div below contains the buttons for start game, high scores. -->
+        <section id="landing-screen" class= "view" >
+            <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
+            <img src="https://img.icons8.com/ios-glyphs/90/detective--v1.png" alt="detective" width="150" height="150"/>
+            <ul id="menu-buttons">
+                <li> <button class="button-primary">New Game</button> </li>
+                <li> <button class="button-primary">View High Scores</button> </li>
+            </ul>
+        </section>
+    </main>
 
 </body>
 
 <hr class="rounded">
     <footer>
-        <p class="love"> Made with <img width="15" height="15" src="./Images/love.png" alt="filled-heart"/> by Luis Emmanuel </p>
-        <p class=" credits"> <img width="15" height="15" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/> game repository <a href=""  - credits - reachout! <a href=mailto:"lerodriguezreyes@outlook.com?subject=About%20Your%20Transcendent%20Echoes%20Game"></a> </p>
+        <p class="love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart"/> by Luis Emmanuel </p>
+        <p class=" credits"> <img width="15" height="15" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/> <a href="https://github.com/lerodriguezreyes/m1p-echoes.git">game repository</a>  - credits - <a href=mailto:"lerodriguezreyes@outlook.com?subject=About%20Your%20Transcendent%20Echoes%20Game">reachout!</a> </p>
     </footer>
 
   <!-- Commenting out music loop, it gets annoying when working :) -->
@@ -39,11 +40,3 @@
     <source src="/Sounds/clip30Sec.mp3" type="audio/mpeg">
   </audio> -->
 </html>
-
-<div id="ztype-byline">
-    ZType (c) – <a href="http://phoboslab.org/" target="_blank">phoboslab.org</a>
-    –
-    <a href="#" id="open-feedback-form">feedback</a>
-    –
-    <a href="http://nofatenetmusic.bandcamp.com/album/the-phoboslab-works">soundtrack</a>
-</div>
