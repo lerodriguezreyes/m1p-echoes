@@ -9,28 +9,34 @@
     <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/30/monster-mouth.png" alt="monster-mouth"/>
     <link href="https://fonts.cdnfonts.com/css/frieska" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/bacasime-antique" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/faithful-hand" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/catynburg-browling" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/catynburg-browling" rel="stylesheet">
 </head>
 
 <body>
-    <!-- This is the frame/tvbox structure for the game content -->
+    <!-- This is the frame/tvbox structure for the game content it is fixed.-->
     <main class="gameFrame">  
     <header>
         <div><h2> Transcendent </h2></div> 
         <div><h1> Echoes </h1></div> 
     </header> 
     
-    <!-- The div below contains the buttons for start game, high scores. -->
+    <!-- The section below contains the buttons for start game and high scores menu. -->
         <section id="landingScreen" class= "view" >
-
-            <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
-            <div class="centered"> <img src="./images/detective.png" alt="detective" width="100" height="100"/> </div>
-            <img src="https://prompthero.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt3TlRBNFlqZzJOUzA1WVdJMkxUUXlZV1V0T1dZME1pMHdNR1F3TmprME4ySXhPREFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bd34b9e9ce5bc68d800eec32e7ae9ab7daebcc2f/prompthero-prompt-58d830c1fbd.png"/ width="500" height="600">
-            <!-- Buttons should be centered and with no borders - just the text.-->
-            <div> <button class="menuButton">New Game </button> <button class="menuButton">View High Scores</button> </div>
+            <div class=" container">
+                <img src="https://prompthero.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt3TlRBNFlqZzJOUzA1WVdJMkxUUXlZV1V0T1dZME1pMHdNR1F3TmprME4ySXhPREFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bd34b9e9ce5bc68d800eec32e7ae9ab7daebcc2f/prompthero-prompt-58d830c1fbd.png"/ width="500" height="600">
+                <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
+                <div class="centered"> <img src="./images/detective.png" alt="detective" width="100" height="100"/> </div>
+            </div>           
+            <div>
+                <button class="menuButton">New Game </button>
+                <button class="menuButton">View High Scores</button>
+            </div>
         </section>
-        
+
+    <!-- This section still needs a lot of styling work. I want the table to be dinamically generated. -->    
         <section id="highScores" class="view">
-            <!-- This section still needs a lot of styling work. The table is a random placeholder. Also - button location is off. -->
             <div> <h3> Survivors </h3> </div>
             <div id="table"> 
                 <table style="margin-left: auto; margin-right: auto;">
@@ -53,89 +59,114 @@
                     </tr>
                     </tbody>
                     </table>
-            <div><button class="navButton">Go back</button></div>
+            </div>
+            <div>
+                <button class="navButton">Go back</button>
             </div>
         </section>
-
+        
+        <!-- The section below contains the vault entrance scene. As soon as ENTER is pressed, timer begins. -->
         <section id="entrance" class= "view" >
-            <img src="/images/vault.jpg" alt="vault entrance" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
-            <div><button class="navButton">Enter</button></div>
+            <img src="/images/vault.jpg" alt="vault entrance" width="500" height="600"/>
+            <div id="startButton"><button class="navButton">Enter</button></div>
         </section>
-
+        
+        <!-- The section below contains the orb scene -->
         <section id="orbRoom" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
+            <div class="container">
+                <img src="/images/orbRoom.jpg" alt="Chamber with orb in a pedestal" width="500" height="600"/>
+                <div id="hud" class="upperRight">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
             </div>
-            <img src="/images/orbRoom.jpg" alt="Chamber with orb in a pedestal" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
+            
             <div><button class="navButton">Move foward</button></div>
         </section>
-
+        
+        <!-- The section below contains the Hallway scene -->
         <section id="hall" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="/images/hall.jpg" alt="Hallway in brick bunker" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
-            <div><button class="Navbutton">Go back</button></div>
-            <div><button class="Navbutton">Proceed to Rooom 1</button></div>
-            <div><button class="Navbutton">Proceed to Rooom 2</button></div>
-            <div><button class="Navbutton">Proceed to Rooom 3</button></div>
+            <div class="container">
+                <img src="/images/hall.jpg" alt="Hallway in brick bunker" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
+            <div>
+                <button class="Navbutton">Go back</button>
+                <button class="Navbutton">Proceed to Rooom 1</button>
+                <button class="Navbutton">Proceed to Rooom 2</button>
+                <button class="Navbutton">Proceed to Rooom 3</button>
+            </div>
         </section>
-
+        
+        <!-- The section below contains the Intact laboratory scene -->
         <section id="room1" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="/images/lab1.jpg" alt="Intact laboratory" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div class="container">
+                <img src="/images/lab1.jpg" alt="Intact laboratory" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
             <div><button class="Navbutton">Go back</button></div>
         </section>
-
+        
+        <!-- The section below contains the Living Cuarters scene -->
         <section id="room2" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="./images/cuarters.jpg" alt="Living cuarters" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div class="container">
+                <img src="./images/cuarters.jpg" alt="Living cuarters" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
             <div><button class="Navbutton">Go back</button></div>    
         </section>
         
+        <!-- The section below contains the Destroyed Laboratory scene -->
         <section id="room3" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="./images/lab2.jpg" alt="Destroyed laboratory" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
-            <div><button class="navButton">Go back</button></div>    
+            <div class="container">
+                <img src="./images/lab2.jpg" alt="Destroyed laboratory" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
+            <div>
+                <button class="navButton">Go back</button>
+            </div>    
         </section>
 
+        <!-- The section below contains the Game Over scene -->
         <section id="gameOver" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="./images/gameOver.jpg" alt="monstrousTeeth" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
-            <div><button class="restartButton">Go back</button></div>    
+            <div class="container">
+                <img src="./images/gameOver.jpg" alt="monstrousTeeth" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
+            <div id="restartButton">
+                <button class="navButton">Play Again?</button>
+            </div>    
         </section>
         
+        <!-- The section below contains the Game Won scene -->
         <section id="gameWon" class= "view">
-            <div id="hud">
-                <div id="lifeBar"> generic life bar </div>
-                <div id="timeRemaining"> countdown </div>
-              </div>
-            <img src="./images/gameWon.png" alt="Monster" width="600" height="600"/>
-            <!-- Buttons should be centered and with no borders - just the text.-->
-
-            <div><button class="restartButton">Go back</button></div>    
+            <div class="container">    
+                <img src="./images/gameWon.png" alt="Monster" width="500" height="600"/>
+                <div id="hud">
+                    <div id="lifeBar"> generic life bar </div>
+                    <div id="timeRemaining"> countdown </div>
+                </div>
+            </div>
+            <div id="restartButton">
+                <button class="navButton">Play Again?</button>
+            </div>    
         </section>
+        
     </main>
 
 </body>

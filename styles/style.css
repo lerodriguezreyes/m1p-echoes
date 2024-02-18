@@ -51,7 +51,7 @@ a {
   justify-content: center;
   align-items: center;
   border-width: 100px;  
-  height: 600px;
+  height: 650px;
   max-width: 900px;
   margin: auto;
   border: 25px;
@@ -60,9 +60,7 @@ a {
 }
 
 #landingScreen{
-  display: none ; /* to enable view change to flex */
-  height: 650px;
-  max-width: 900px;
+  display: flex /* to enable view change to flex */
 }
 
 .centered {
@@ -71,6 +69,19 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.container {
+  position: relative;
+  text-align: right;
+  color: white;}
+
+  #hud{
+  position: absolute;
+  top: 2%;
+  left: 75%;
+  transform: translate(-2%, -2%);
+}
+
 
 
 
@@ -85,11 +96,8 @@ button {
   width: 150px;
   height: 45x;
 }
-.navButton, #hud {
-  position:relative;
-  
-  left: 75%
-}
+
+
 footer {
   background-color: #000;
   color: #555;
