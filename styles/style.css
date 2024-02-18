@@ -38,6 +38,7 @@ h2 {
 h3 {
   font-size: 25px;
   text-align: center;
+  padding-top: 25px;
 }
 
 a {
@@ -45,7 +46,7 @@ a {
 }
 
 .view {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -59,7 +60,7 @@ a {
 }
 
 #landingScreen{
-  display: flex;
+  display: none ; /* to enable view change to flex */
   height: 650px;
   max-width: 900px;
 }
@@ -71,12 +72,7 @@ a {
   transform: translate(-50%, -50%);
 }
 
-.bottomRight {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
 
 button {
   color:rgb(56,113,13);
@@ -89,7 +85,11 @@ button {
   width: 150px;
   height: 45x;
 }
-
+.navButton, #hud {
+  position:relative;
+  
+  left: 75%
+}
 footer {
   background-color: #000;
   color: #555;
