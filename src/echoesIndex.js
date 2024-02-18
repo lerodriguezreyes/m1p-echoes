@@ -3,11 +3,6 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 /******************************** Constant variables ********************************/
 const time = 300 //game lasts for 300 seconds
-const lifeBar =  [];
-const timeRemaining = [];
-const roomImagesArray = []; 
-const enemyImages = [];
-const notesImages = [];
 
 /************  Html views  ************/
   // View divs
@@ -43,11 +38,30 @@ plaque.src ="https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/pla
 
 
 /******************************** Timer ********************************/
-let timer;
 
-function gameTime() {
+startTimer();
+
+function startCountdown() {
+  game.timeRemaining = 300
+  console.log("timer start");
+  let minutes = Math.floor(game.timeRemaining / 60).toString().padStart(2, "0");
+  let seconds = (game.timeRemaining % 60).toString().padStart(2, "0");
+  timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+  timer = setInterval(() => {
+    console.log(game.timeRemaining);
+    minutes = Math.floor(quiz.timeRemaining / 60).toString().padStart(2, "0");
+    seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+    game.timeRemaining--;
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+    if (game.timeRemaining <= 0) {
+      showGameOver();
+    }
+  }, 1000);
 
 }
+
 
 // Enable music and loop the track
 let vid = document.getElementById("music");
