@@ -3,11 +3,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+}                
 
 body {
-  background-color: #000;
-  color: #555;
+  background-color: rgb(0,0,0);
+  color: rgb(27, 54, 5);
   font-family: helvetica, arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -18,45 +18,85 @@ header {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 0 20px;
 }
 
 h1 {
-  font-size: 150px;
+  font-size: 170px;
+  font-family: 'FRIESKA', sans-serif;
+  padding-bottom: 25px;
+  margin: 0;
+  height: 150px;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 75px;
+  font-family: 'Bacasime Antique', sans-serif;
+  margin: 0;
+  height: 85px;    
+  }
+
+h3 {
+  font-size: 25px;
+  text-align: center;
 }
 
-#landing-screen{
-  display: flex;
+a {
+  color:#555;
+}
+
+.view {
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-width: 100px;  
   height: 600px;
-  max-width: 600px;
+  max-width: 900px;
   margin: auto;
+  border: 25px;
   padding: 25px;
-  background-image: url(https://prompthero.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt3TlRBNFlqZzJOUzA1WVdJMkxUUXlZV1V0T1dZME1pMHdNR1F3TmprME4ySXhPREFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bd34b9e9ce5bc68d800eec32e7ae9ab7daebcc2f/prompthero-prompt-58d830c1fbd.png);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  
 }
 
-#menu-buttons{
-  align-content: flex-end;
-  align-items: justify;
+#landingScreen{
+  display: flex;
+  height: 650px;
+  max-width: 900px;
+}
+
+.centered {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottomRight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  color:rgb(56,113,13);
+  background-color:#00000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+  height: 45x;
 }
 
 footer {
   background-color: #000;
-  color: #555;a
+  color: #555;
   font-family: helvetica, arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-size: 10pt
+  font-size: 10pt;
 }
 
 p.love {
@@ -66,10 +106,4 @@ p.love {
 p.credits {
   text-align: right;
 
-}
-
-hr.rounded {
-  border-top: 2px solid #05881b;
-  border-radius: 2px;
-  width: 100%;
 }

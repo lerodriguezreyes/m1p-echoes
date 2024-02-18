@@ -7,36 +7,148 @@
     <link rel="stylesheet" href= "./styles/style.css" />
     <title> Echoes from Beyond </title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/30/monster-mouth.png" alt="monster-mouth"/>
+    <link href="https://fonts.cdnfonts.com/css/frieska" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/bacasime-antique" rel="stylesheet">
+                
+                
 </head>
 
 <body>
     <!-- This is the frame/tvbox structure for the game content -->
-    <main class="game-frame">  
+    <main class="gameFrame">  
     <header>
-        <div><h2>Transcendent</h2></div> 
-        <div><h1>Echoes</h1></div> 
+        <div><h2> Transcendent </h2></div> 
+        <div><h1> Echoes </h1></div> 
     </header> 
+    
     <!-- The div below contains the buttons for start game, high scores. -->
-        <section id="landing-screen" class= "view" >
+        <section id="landingScreen" class= "view" >
+
             <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
-            <img src="https://img.icons8.com/ios-glyphs/90/detective--v1.png" alt="detective" width="150" height="150"/>
-            <ul id="menu-buttons">
-                <li> <button class="button-primary">New Game</button> </li>
-                <li> <button class="button-primary">View High Scores</button> </li>
-            </ul>
+            <div class="centered"> <img src="./images/detective.png" alt="detective" width="100" height="100"/> </div>
+            <img src="https://prompthero.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt3TlRBNFlqZzJOUzA1WVdJMkxUUXlZV1V0T1dZME1pMHdNR1F3TmprME4ySXhPREFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bd34b9e9ce5bc68d800eec32e7ae9ab7daebcc2f/prompthero-prompt-58d830c1fbd.png"/ width="500" height="600">
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div> <button class="menuButton">New Game </button> <button class="menuButton">View High Scores</button> </div>
+        </section>
+        
+        <section id="highScores" class= "view" >
+            <!-- This section still needs a lot of styling work. The table is a random placeholder. Also - button location is off. -->
+            <div> <h3> Survivors </h3> </div>
+            <div id="table"> 
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tbody>
+                    <tr>
+                    <td>&nbsp;Name</td>
+                    <td>Score&nbsp;</td>
+                    </tr>
+                    <tr>
+                    <td>1- Player&nbsp;</td>
+                    <td>33</td>
+                    </tr>
+                    <tr>
+                    <td>2- Slayer&nbsp;</td>
+                    <td>23&nbsp;</td>
+                    </tr>
+                    <tr>
+                    <td>3- AAAA&nbsp;</td>
+                    <td>13&nbsp;</td>
+                    </tr>
+                    </tbody>
+                    </table>
+            <button class="navButton">Go back</button>
+            </div>
+        </section>
+
+        <section id="entrance" class= "view" >
+            <img src="/images/vault.jpg" alt="vault entrance" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="navButton">Enter</button></div>
+        </section>
+
+        <section id="orbRoom" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+            </div>
+            <img src="/images/orbRoom.jpg" alt="Chamber with orb in a pedestal" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="navButton">Move foward</button></div>
+        </section>
+
+        <section id="hall" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="/images/hall.jpg" alt="Hallway in brick bunker" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="Navbutton">Go back</button></div>
+            <div><button class="Navbutton">Proceed to Rooom 1</button></div>
+            <div><button class="Navbutton">Proceed to Rooom 2</button></div>
+            <div><button class="Navbutton">Proceed to Rooom 3</button></div>
+        </section>
+
+        <section id="room1" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="/images/lab1.jpg" alt="Intact laboratory" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="Navbutton">Go back</button></div>
+        </section>
+
+        <section id="room2" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="./images/cuarters.jpg" alt="Living cuarters" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="Navbutton">Go back</button></div>    
+        </section>
+        
+        <section id="room3" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="./images/lab2.jpg" alt="Destroyed laboratory" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="navButton">Go back</button></div>    
+        </section>
+
+        <section id="gameOver" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="./images/gameOver.jpg" alt="monstrousTeeth" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+            <div><button class="restartButton">Go back</button></div>    
+        </section>
+        
+        <section id="gameWon" class= "view">
+            <div id="hud">
+                <div id="lifeBar"> generic life bar </div>
+                <div id="timeRemaining"> countdown </div>
+              </div>
+            <img src="./images/gameWon.png" alt="Monster" width="600" height="600"/>
+            <!-- Buttons should be centered and with no borders - just the text.-->
+
+            <div><button class="restartButton">Go back</button></div>    
         </section>
     </main>
 
 </body>
 
-<hr class="rounded">
     <footer>
-        <p class="love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart"/> by Luis Emmanuel </p>
-        <p class=" credits"> <img width="15" height="15" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/> <a href="https://github.com/lerodriguezreyes/m1p-echoes.git">game repository</a>  - credits - <a href=mailto:"lerodriguezreyes@outlook.com?subject=About%20Your%20Transcendent%20Echoes%20Game">reachout!</a> </p>
+        <p class= "love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart"/> by Luis Emmanuel </p>
+        <p class= "credits"> <img width="15" height="15" src="https://img.icons8.com/ios-filled/50/github.png" alt="github"/> <a href="https://github.com/lerodriguezreyes/m1p-echoes.git">game repository</a>  - credits - <a href=mailto:"lerodriguezreyes@outlook.com?subject=About%20Your%20Transcendent%20Echoes%20Game">reachout!</a> </p>
     </footer>
 
   <!-- Commenting out music loop, it gets annoying when working :) -->
-  <!--<id="music" audio controls autoplay>
+  <!-- <id="music" audio controls autoplay>
     <source src="/Sounds/clip30Sec.mp3" type="audio/mpeg">
   </audio> -->
 </html>

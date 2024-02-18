@@ -1,25 +1,5 @@
 
-    
- 
-        <section="landing-page" class="view">
-                
-        </section>    
-            <div class="content">
-            <div id="question"></div>
-            <ul id="choices"></ul>
-            </div>
-
-             </section> 
-       
-          
-
-
-
-
-
-
-        </section>
-        <!  --
+         <!  --
         <!-- The section below is the room prototype structure, that contains: . -->         
         
         <section class="rooms">
