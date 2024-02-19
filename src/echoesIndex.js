@@ -49,21 +49,21 @@ plaque.src ="https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/pla
 // scenarios array
 
 const roomDescription = {
-    vault: "You are part of an organization dedicated to protecting mankind against all threats. Both known and unknown, yet now a days the threats are more... mundane in nature. During your turn of strongly encouraged and by no means forced asistance in taking stock of the supplies, you find a door you've never seen before. You decide to open it and find yourself in front of an intricate vault door. Next to it you see a tarnished plaque.",
+    vault: "You are part of an organization dedicated to protecting mankind against all threats. Both known and unknown, yet now a days the threats are more... mundane in nature. During your turn of strongly encouraged asistance in organizing office supplies, find a door you've never seen before. You decide to open it. Now you find yourself in front of an intricate vault door. Next to it you see a tarnished plaque.",
     
     orb: "Upon entering the vault, you find yourself in a 15 by 15 foot open chamber where a glowing orb sits atop a pedestal in the center. Suddendly the massive door behind you slams shut.",
 
-    hall: "You end up in a long hallway dimly lit by flickering lights dangling from the ceeling and ensconed in the very foundation of the building. Up ahead you see 3 doors marked with notes. At your right you spot a bowie knife pinning 2 loose sheets of paper. The handwriting on the paper seems familiar.",
+    hall: "You end up in a long hallway dimly lit by flickering lights dangling from the ceeling and ensconed into the very foundation of the building. Up ahead you see 3 marked doors with notes. At your right you spot a bowie knife pinning 2 loose sheets of paper. The handwriting on the paper seems familiar.",
 
     livingCuarters: "You find yourself in an inmaculately clean room featuring tables with chairs, desks, neatly made beds and a nearly empty closet. You may rest here if you wish.",
     
-    laboratoryDestroyed: "This expansive room once served as a laboratory. It has clearly seen better days. The walls are marred with ash and scorch marks. All of the equipment is strewn across the benches haphazarly. Amidst the caos, you find a broken chest that holds a relatively intact note. It is encrypted.",
+    laboratoryDestroyed: "This expansive room once served as a laboratory. It has clearly seen better days. The walls are marred with ash and scorch marks. All of the equipment is strewn across the benches haphazarly. Amidst the caos, you find a broken chest that holds a relatively intact note:  shift for 3.",
     
     laboratoryPristine: "This room looks nearly identical to the other, save for the fact that there are no burn marks and the equipment is intact. The supplies here range from weapon components, to munitions, to chemicals and biological specimens.",
     
-    bossBattle: "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me, if you dare! Next to you a grayish green portal opens.",
+    bossBattle: "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me if you dare! Next to you a grayish green portal opens.",
 
-    victory: "After defeating the unknown horror, the vault door opens. Instead of returning to the organization's workspace, you find yourself greeted by Dusting in front of another vault door. You think to yourself, I guess there's no rest for the wicked."
+    victory: "After defeating the unknown horror, the vault door opens. Instead of returning to the SCP Foundation's workspace, you find yourself greeted by Dustin in front of yet another vault door. He said, "Took you long enough!" You think to yourself, there really is no rest for the wicked."
 }
 
 const roomChoices = [ 
@@ -71,9 +71,13 @@ const roomChoices = [
     
     new Narrative ("Will you read on or heed your own counsel?", ["Read the second page", "Keep on exploring"], eventResult, 2),
     
-    new Narrative ("Investigating is tough work. Will you rest?", ["Yes","No"], eventResult, 3),
+    new Narrative ("Investigating is tough work. Will you rest?",["Yes","No"], eventResult, 3),
+
+    new Narrative ("There has got to be something here to explain what is going on. Will you search this room?", ["Yes","No"], eventResult, 4),
+
+    new Narrative ("I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Chemical stack", "Materials rack"], 5),
         
-    new Narrative ("Its dangerous to go outside. Take one of these: ", ["An antimatter sword","An energy-displacing buckler"], eventResult, 4),
+    new Narrative ("It's dangerous to go outside. Take one: ", ["An antimatter sword","An energy-displacing buckler"], eventResult, 6)
 ]
 
 
@@ -83,11 +87,11 @@ currentPlayer = []
 
 const players = ["Celiel", "Dalton", "Daniel", "Emely", "Luis", "Jaser", "Joel", "John", "Jonathan", "Juan", "Jose", "Kenneth", "Kevin", "Naiomy", "Roxangelica", "Shannon"] 
 
-const plaqueNote = 'Fellow hunters, I understand this situation may be unsettling. However, it is vital that you heed my instructions to the best of your abilities. Regrettably, I cannot provide further details, it could endanger us all. Rest assured; we are embarking on a hunt for the most dangerous quarry our organization has ever faced. More information awaits within the containment chamber. Upon ingress, the doors will seal behind you. You will be contained inside until the sequence automatically initiates 24 hours later. It is imperative not to overlook this timeframe. Refrain from bringing more rations than necessary for the allotted hours. Lastly, under no circumstances should you take anything out of the containment vault. Wishing you all the best of luck. Your mentor, Dustin.'
+const plaqueNote = 'Fellow Iron-hunters, I understand this situation may be unsettling. However, it is vital that you heed my instructions to the best of your abilities. Regrettably, I cannot provide further details, it could endanger us all. Rest assured; we are embarking on a hunt for the most dangerous quarry our organization has ever faced. More information awaits within the containment chamber. Upon ingress, the doors will seal behind you. You will be contained inside until the sequence automatically initiates 24 hours later. It is imperative not to overlook this timeframe. Refrain from bringing more rations than necessary for the allotted hours. Lastly, under no circumstances should you take anything out of the containment vault. Wishing you all the best of luck. Your mentor, Dustin.'
 
-const hallnote = `Hi me. Yeah, this is weird. I’m taking to myself via letters here. It’s a shitty situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dusty disappeared. This place contains a ancient secret we are fighting. The warning's real; we’re picking up Dustin's slack after he went on break and never came back. So yeah, we’re stuck here trying to bootstrap a solution from remains and stuff we’ve cobbled up together. We're so close to figuring this out. The next page contains the details of the threat but DON’T READ IT YET. Explore and form your own opinions. With love, from me to me ${currentPlayer}.`
+const hallnote = `Hi me. Yeah, this is weird. I’m taking to myself via letters here. It’s a shitty situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dusty disappeared. This place contains a ancient secret we are fighting. The warning's real; we’re picking up Dusty's slack after he went on break and never came back. So yeah, we’re stuck here trying to bootstrap a solution from remains and stuff we’ve cobbled up together. We're so close to figuring this out. The next page contains the details of the threat but DON’T READ IT YET. Explore first. With love, from me to me ${currentPlayer}.`
 
-const hallNote2 = `Want to know a secret? Daniel told me once this place isn’t really a containment vault. It’s a shelter. The threat is outside, somewhere… We are assuming the worst-case scenario: whatever’s out there is omniscient. This vault might be the only place in creation IT can’t directly see into. Somehow, it messes with people’s memories. It’s not really invisible; it’s protected by some kind of obfuscation array. That might be for the best, since once you see it, it can also see you. The more you learn about it, the better it can find you. Yeah, it’s the abyss that looks back at you. I’m afraid that giving it a name might escalate things so I’m going to keep it vague. I don’t think it’s sentient, but it lashes out at those who perceive it. It’s incredibly lethal, erases people from memory. SHIT I now notice that I messed up, it knows you are aware of it and so IT is of you. Quick, go to the …. [unreadable].`
+const hallNote2 = `Wanna know a secret? Daniel told me once this place isn’t really a containment vault. It’s a shelter. The threat's outside, somewhere… We're assuming the worst-case scenario: whatever’s out there is omniscient. This vault might be the only place in creation IT can’t directly see into. Somehow, IT messes with people’s memories. IT’s not really invisible; maybe protected by some kind of obfuscation array? Might be for the best, since once you see IT, IT can also see you. The more you learn about IT, the better IT can find you. Yeah, it’s the abyss that looks back at you stuff. I’m afraid that naming IT might escalate things. so I’m going vague. I don’t think IT’s sentient, but IT lashes out at those who perceive IT. IT's incredibly lethal, erases people from memory. SHIT, too many IT references made you aware of IT, now IT is aware of you.`
 
 const NotesArray = [
     `If something can cross over from conceptual space into reality, taking physical form, then something can cross into the opposite direction. It must be possible to take a physical entity, mechanically extract the idea it embodies, apmplify that idea and broadcast it up into the conceptual space. A bigger idea, an universal code. One designed to fight this thing. ~ ${otherPlayername}`,
