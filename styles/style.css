@@ -23,7 +23,6 @@ header {
 h1 {
   font-size: 170px;
   font-family: 'FRIESKA', sans-serif;
-  padding-bottom: 25px;
   margin: 0;
   height: 150px;
 }
@@ -35,12 +34,6 @@ h2 {
   height: 85px;    
   }
 
-h3 {
-  font-size: 25px;
-  text-align: center;
-  padding-top: 25px;
-}
-
 a {
   color:#555;
 }
@@ -51,16 +44,12 @@ a {
   justify-content: center;
   align-items: center;
   border-width: 100px;  
-  height: 650px;
+  height: 700px;
   max-width: 900px;
   margin: auto;
   border: 25px;
   padding: 25px;
   
-}
-
-#landingScreen{
-  display: flex /* to enable view change to flex */
 }
 
 .centered {
@@ -75,13 +64,12 @@ a {
   text-align: right;
   color: white;}
 
-  #hud{
-  position: absolute;
+.hud{
+  position: relative;
   top: 2%;
   left: 75%;
   transform: translate(-2%, -2%);
 }
-
 
 
 
@@ -97,9 +85,7 @@ button {
   height: 45x;
 }
 
-
 footer {
-  background-color: #000;
   color: #555;
   font-family: helvetica, arial, sans-serif;
   margin: 0;
