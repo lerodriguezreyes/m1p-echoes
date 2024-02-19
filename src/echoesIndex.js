@@ -61,7 +61,9 @@ const roomDescription = {
     
     laboratoryPristine: "This room looks nearly identical to the other, save for the fact that there are no burn marks and the equipment is intact. The supplies here range from weapon components, to munitions, to chemicals and biological specimens.",
     
-    bossBattle: "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me, if you dare! Next to you a grayish green portal opens."
+    bossBattle: "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me, if you dare! Next to you a grayish green portal opens.",
+
+    victory: "After defeating the unknown horror, the vault door opens. Instead of returning to the organization's workspace, you find yourself greeted by Dusting in front of another vault door. You think to yourself, I guess there's no rest for the wicked."
 }
 
 const roomChoices = [ 
