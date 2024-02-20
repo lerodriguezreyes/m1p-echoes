@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div>
-                <button id="start-game">New Game</button>
-                <button id="high-Scores">View High Scores</button>
+                <button id="navLandingToVault">New Game</button>
+                <button id="navLandingToHighScores">View High Scores</button>
             </div>
             <p style="width: 500px; text-align: center;">"In the absence of light, darkness prevails. There are things
                 that go bump in the night, make no mistake about that. We are the ones who bump back."</p>
@@ -84,7 +84,7 @@
         <!-- This section encloses the actual gameplay views. The idea is to have the image, narrative content, choices content, minigame and navigation content dinamically generated  -->
         <section id="gamePlayScreen" class="view" style="display: none;">
             <div class="gameImageContainer">
-                <img src=https://shorturl.at/vDM58 width="500" height="600">
+                <img src="https://shorturl.at/vDM58" id="roomImage" width="500" height="600" >
                 <div id="hud">
                     <div id="resultLifeBar">
                         <div id="lifeBarProgress"></div>
@@ -95,13 +95,13 @@
                 <div class="Minigame"></div>
             </div>
             <div>
-                <button id="enterVault">Venture forth</button>
-                <button id="enterHall">Proceed</button>
-                <button id="backOrb">Go back to the Orb Chamber</button>
-                <button id="backHall">Go back to the Hall</button>
-                <button id="room1">Proceed to Rooom 1</button>
-                <button id="room2">Proceed to Rooom 2</button>
-                <button id="room3">Proceed to Rooom 3</button>
+                <button id="navVaultToOrb">Venture forth</button>
+                <button id="navOrbToHall">Go to next Room</button>
+                <button id="navHallToOrb">Back to the Orb</button>
+                <button id="navHallToRoom1">Go to Rooom 1</button>
+                <button id="navHallToRoom2">Go to Rooom 2</button>
+                <button id="navHallToRoom3">Go to Rooom 3</button>
+                <button id="navRoomToHall">Back to the Hall</button>
             </div>
         </section>
        
