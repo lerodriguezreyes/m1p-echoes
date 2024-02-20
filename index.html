@@ -19,6 +19,7 @@
 <body>
 
     <main>
+        
         <header>
             <div>
                 <h2> Transcendent </h2>
@@ -29,10 +30,7 @@
             <br>
         </header>
 
-        <!-- Music commented out because it is annoying while working :) -->
-        <!-- <id="music" audio controls autoplay>
-        <source src="/Sounds/clip30Sec.mp3" type="audio/mpeg">
-        </audio> -->
+
 
         <!-- The section below contains the landing page with buttons  start game and high scores menu. -->
         <section id="landingScreen" class="view">
@@ -42,9 +40,9 @@
                 <div class="centered"> <img src="https://shorturl.at/FIJQW" alt="detective" width="100" height="100" />
                 </div>
             </div>
-            <div class=navigationButtons>
-                <button id="start-game" class="menuButton">New Game</button>
-                <button id="highScores" class="menuButton">View High Scores</button>
+            <div>
+                <button id="start-game">New Game</button>
+                <button id="high-Scores">View High Scores</button>
             </div>
             <p style="width: 500px; text-align: center;">"In the absence of light, darkness prevails. There are things
                 that go bump in the night, make no mistake about that. We are the ones who bump back."</p>
@@ -52,7 +50,7 @@
         </section>
 
         <!-- This section still needs styling work. It should be the dinamically generated high scores menu. -->
-        <section id="highScores" class="view" style="display: none;">
+        <section id="highScoresScreen" class="view" style="display: none">
             <div>
                 <h3> Survivors </h3>
             </div>
@@ -79,13 +77,13 @@
                 </table>
             </div>
             <div>
-                <button class="navButton">Go back</button>
+                <button id="backToMenu">Go back</button>
             </div>
         </section>
         
         <!-- This section encloses the actual gameplay views. The idea is to have the image, narrative content, choices content, minigame and navigation content dinamically generated  -->
-        <section id="gamePlayContainer" class="view" style="display: none;">
-            <div class="image-container">
+        <section id="gamePlayScreen" class="view" style="display: none;">
+            <div class="gameImageContainer">
                 <img src=https://shorturl.at/vDM58 width="500" height="600">
                 <div id="hud">
                     <div id="resultLifeBar">
@@ -96,13 +94,22 @@
                 <div class="Narrative"></div>
                 <div class="Minigame"></div>
             </div>
-            <div class="navigationButton">
-                <button id="goBack">Go back</button>
+            <div>
+                <button id="enterVault">Venture forth</button>
+                <button id="enterHall">Proceed</button>
+                <button id="backOrb">Go back to the Orb Chamber</button>
+                <button id="backHall">Go back to the Hall</button>
                 <button id="room1">Proceed to Rooom 1</button>
                 <button id="room2">Proceed to Rooom 2</button>
                 <button id="room3">Proceed to Rooom 3</button>
             </div>
         </section>
+       
+        <!-- Music commented out because it is annoying while working :) -->
+        <!-- Still need to make it autoplay on load and hide controls. -->
+            <!-- <audio controls autoplay loop>
+            <source src="./sounds/clip30Sec.mp3" type="audio/mpeg">
+            </audio> -->
 
         <footer>
             <p class="love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart" /> by Luis
