@@ -36,9 +36,6 @@
         <section id="landingScreen" class="view">
             <div class="image-container">
                 <img src=https://shorturl.at/vDM58 width="500" height="600">
-                <!-- This gif image is not working it should be inserted under ECHOES, as placeholder i'm inserting as a still image-->
-                <div class="centered"> <img src="https://shorturl.at/FIJQW" alt="detective" width="100" height="100" />
-                </div>
             </div>
             <div>
                 <button id="navLandingToVault">New Game</button>
@@ -81,7 +78,7 @@
             </div>
         </section>
         
-        <!-- This section encloses the actual gameplay views. The idea is to have the image, narrative content, choices content, minigame and navigation content dinamically generated  -->
+        <!-- This section encloses the actual gameplay views. The idea is to have the image, hud, narrative content, choices content, minigame and navigation-->
         <section id="gamePlayScreen" class="view" style="display: none;">
             <div class="gameImageContainer">
                 <img src="https://shorturl.at/vDM58" id="roomImage" width="500" height="600" >
@@ -89,10 +86,12 @@
                     <div id="resultLifeBar">
                         <div id="lifeBarProgress"></div>
                     </div>
-                    <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
+                    <div id="timeRemaining">Remaining Time: <span>05:00</span></div>
                 </div>
-                <div class="Narrative"></div>
-                <div class="Minigame"></div>
+                <div class="narrativeContainer"></div>
+                <div class="choicesContainer"></div>
+                <div class="eventContainer"></div>
+                <div class="notesContainer"></div>
             </div>
             <div>
                 <button id="navVaultToOrb">Venture forth</button>
@@ -102,9 +101,52 @@
                 <button id="navHallToRoom2">Go to Rooom 2</button>
                 <button id="navHallToRoom3">Go to Rooom 3</button>
                 <button id="navRoomToHall">Back to the Hall</button>
+                
             </div>
         </section>
-       
+
+    <!-- The section below contains the Game Over scene -->
+    <section id="gameOver" class= "view" style="display: none;">
+        <div class="container">
+            
+            <img src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/gameLost.png" alt="Monster Arises" width="500" height="600"/>
+
+            <h2 class="died">You Died...</h2>
+            
+            <p class="end"> As your last breath fades away, the ancient entity known as Cthulhu stirs awake. With the seal broken, his conciousness returns and he rises from its eons-long slumber.
+            </p>
+
+        </div>
+
+        <div id="restartButton">
+
+            <button class="navButton">Play Again?</button>
+
+        </div>
+
+    </section>
+
+    <!-- The section below contains the Game Won scene -->
+    <section id="gameWon" class= "view" style="display: none;">
+        
+        <div class="container">    
+            
+            <img src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/gameWon.jpg" alt="Adventure begins." width="500" height="600"/>
+            
+            <h2 class="won">You Survived!</h2>
+            
+            <p class = "end">After braving unknown horrors, the vault door opens. Instead of returning to the SCP Foundation, you find yourself greeted by Dustin in front of a strange portal. He says, "Took you long enough, breaks over. Now the fun really begins!" You think to yourself, <em>there really is no rest for the wicked.</em></p>
+        </div>
+        
+        <div id="restartButton">
+        
+            <button class="navButton">Play Again?</button>
+        
+        </div>    
+
+    </section>
+
+
         <!-- Music commented out because it is annoying while working :) -->
         <!-- Still need to make it autoplay on load and hide controls. -->
             <!-- <audio controls autoplay loop>
@@ -124,7 +166,8 @@
         </footer>
 
         <script src="./src/rooms.js"></script>
-        <script src="./js/echoesIndex.js"></script>
+        <script src="./src/events.js"></script>
+        <script src="./src/echoesIndex.js"></script>
 </body>
 
 </html>

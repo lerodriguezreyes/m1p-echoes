@@ -52,11 +52,22 @@ a {
   
 }
 
-.centered {
+.died{
   position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 6%;
+}
+
+.end{
+  position: absolute;
+  text-align: justify;
+  background-color: rgba(0, 0, 0, 0.534);
+  bottom: 0%;
+}
+
+.won{
+  position: absolute;
+  top: 1%;
+  left: 10%
 }
 
 .container {
