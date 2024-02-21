@@ -288,6 +288,9 @@ playerLifeContainer.style.backgroundColor = "red"
   console.log('choices changed');
 
   // choices options change
+  // maybe add and then remove event listeners for each room?
+  // or multiple choose buttons similar to navigation. 
+  //myDIV.removeEventListener("mousemove", myFunction);
   choice1Button.innerText = choicesOptions[0]
   choice1Button.addEventListener('click', () =>{
     game.envCheck()
@@ -300,6 +303,7 @@ playerLifeContainer.style.backgroundColor = "red"
     console.log("cliking for environment check")
   })
 
+  
   console.log('choices options changed');
 
   // start timer
