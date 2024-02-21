@@ -52,6 +52,32 @@ a {
   
 }
 
+#cipherContainer {
+  position: absolute;
+  top: 78%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+}
+
+  /* this is the back image */
+  .image1 {
+    width: 165px;
+    height:165px ;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  /* this is the front image, should be movable */
+  .image2 {
+    width: 108x;
+    height: 108px;
+    position: absolute;
+    top: 22px;
+    left:30px;
+    z-index: 2;
+  }
+
 .died{
   position: absolute;
   bottom: 6%;
