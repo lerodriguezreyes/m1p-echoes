@@ -439,7 +439,7 @@ navRetryButton.addEventListener('click', () => {
   console.log('Life Stats reset')
     })
 
-/******************************** Restart Button ********************************/
+/******************************** Cipher Button ********************************/
  let cipherImage2 = document.getElementById('image2')
  let rotation = 0;
  const angle = 15;
@@ -453,5 +453,9 @@ navRetryButton.addEventListener('click', () => {
     rotateCipher()
     console.log("image rotated")
   })
+
+/******************************** Hidden Object ********************************/
+
+
 
 }) // end of Index
