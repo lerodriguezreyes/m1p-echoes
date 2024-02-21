@@ -7,20 +7,3 @@ class Room {
     this.roomIndex = 0
   }
 }
-
-//   // Orb event
-//   orbEvent(){
-//     if(this.room.playerChoice === rooms[1].)
-//     let playerCheck = playerDiceRoll();
-//     if(playerCheck < 15){
-//         this.playerLife -25;
-//         isGameOver();
-//         // If else -- > Player would remember something, via notes.  
-//   }
-
-//   // Hall event
-//   hallEvent(){
-//     if (playerChoice ==)
-//   }
-
-  // 
