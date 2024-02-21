@@ -1,30 +1,34 @@
 
 window.addEventListener('load', () => {
-  console.log('Connected!')
-
+  console.log('Connected!');
+  let playerLife = 100;
+  let bossLife = 100;
 /******************************************* Html views  *******************************************/
   // View 
-    const landingScreen = document.getElementById('landingScreen')
-    const highScoresScreen = document.getElementById('highScoresScreen')
-    const gamePlayScreen = document.getElementById('gamePlayScreen')
-    const gameOverScreen = document.getElementById('gameOver')
-    const gameWonScreen = document.getElementById('gameWon')
+    const landingScreen = document.getElementById('landingScreen');
+    const highScoresScreen = document.getElementById('highScoresScreen');
+    const gamePlayScreen = document.getElementById('gamePlayScreen');
+    const gameOverScreen = document.getElementById('gameOver');
+    const gameWonScreen = document.getElementById('gameWon');
 
   // Landing Screen Navigation elements
-    const navLandingToVaultButton = document.getElementById('navLandingToVault')
+    const navLandingToVaultButton = document.getElementById('navLandingToVault');
     //TO DO: Botton for High Scores
-    //const navLandingToHighScoresButton = document.getElementById('navLandingToHighScores')
+  //const navLandingToHighScoresButton = document.getElementById('navLandingToHighScores')
 
   // High Scores Screen Navigation element
     //TO DO: button to return to landing screen
     //const backtoMenuButton = document.getElementById('backToMenu')
 
   // Game view elements
-    // Game image 
-    let roomImage = document.getElementById('roomImage') 
+    let roomImage = document.getElementById('roomImage');
+    let narrativeContainerDiv = document.getElementById("narrative");
+    let choicesContainerDiv = document.getElementById("choices");
+    let eventContainerDiv = document.getElementById("event");
+    let notesContainerDiv = document.getElementById("notes");
     
     //Game HUD
-    const lifeBarProgress = document.getElementById('lifeBarProgress');
+    const playerLifeContainer = document.getElementById('playerLifeBar');
     const timeRemainingContainer = document.getElementById('timeRemaining');
     
     // Game Navigation Buttons
@@ -83,7 +87,7 @@ window.addEventListener('load', () => {
       "You find yourself in an inmaculately clean room featuring tables with chairs, desks, neatly made beds and a nearly empty closet.",
       
       // Pristine Lab Scene
-      "This room looks nearly identical to the other, save for the fact that there are no burn marks and the equipment is intact. The supplies here range from weapon components, to munitions, to chemicals and biological specimens.",
+      "This expansive room once served as a laboratory. The supplies here range from weapon components, to munitions, to chemicals and biological specimens.",
         
       // Boss Battle Scene
       "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me if you dare! Next to you a grayish green portal opens.",
@@ -92,7 +96,6 @@ window.addEventListener('load', () => {
   
   
   // Player data
-  
       const players = ["Celiel", "Dalton", "Daniel", "Emely", "Luis", "Jaser", "Joel", "John", "Jonathan", "Juan", "Jose", "Kenneth", "Kevin", "Naiomy", "Roxangelica", "Shannon"] 
   
       let currentPlayer = prompt("Type your first name:" )
@@ -146,22 +149,22 @@ window.addEventListener('load', () => {
      const rooms = [ 
       
       // Vault Entrance Room
-      new Room (roomDescription , plaqueNote, '', 0),
+      new Room (roomDescription, plaqueNote, '', 0, 0),
 
       // Orb Room
-      new Room (roomDescription ,"What will you do?", ["Inspect the room",  "Touch the Orb"], 1),
+      new Room (roomDescription,"What will you do?", ["Inspect the room",  "Touch the Orb"], 10, 1),
 
       // Hallway
-      new Room (roomDescription, "Will you read on or heed your own counsel?", ["Read the second page", "Keep exploring"], 2),
+      new Room (roomDescription, "Will you read on or heed your own counsel?", ["Read the second page", "Keep exploring"], 0, 2),
       
       // Destroyed Laboratory
-      new Room (roomDescription, "There's got to be something here to explain what's going on. Will you search this room?", ["Yes","No"], 3),
+      new Room (roomDescription, "There's got to be something here to explain what's going on. Will you search this room?", ["Yes","No"], 5, 3),
       
       // Living Cuarters
-      new Room (roomDescription, "Investigating is tough work. Will you rest?",["Yes","No"], 4),
+      new Room (roomDescription, "Investigating is tough work. Will you rest?",["Yes","No"], 20, 4),
   
       // Pristine Laboratory
-      new Room (roomDescription, "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Chemical stack", "Materials rack"], 5),
+      new Room (roomDescription, "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Chemical stack", "Materials rack"], 15, 5),
        
     ]
 
@@ -182,6 +185,8 @@ navLandingToVaultButton.addEventListener('click', () => {
   navHallToRoom2Button.style.display = 'none';
   navHallToRoom3Button.style.display = 'none';
   navRoomToHallButton.style.display = 'none';
+  narrativeContainerDiv.innerText = roomDescription[0]
+  
   console.log('buttons hidden')
     })
 
@@ -199,6 +204,7 @@ navVaultToOrbButton.addEventListener('click', () => {
   navHallToRoom2Button.style.display = 'none';
   navHallToRoom3Button.style.display = 'none';
   navRoomToHallButton.style.display = 'none';
+  narrativeContainerDiv.innerText = roomDescription[1]
   console.log('buttons hidden')
   startCountdown();
     })
@@ -218,6 +224,7 @@ navVaultToOrbButton.addEventListener('click', () => {
     navHallToRoom2Button.style.display = 'flex';
     navHallToRoom3Button.style.display = 'flex';
     navRoomToHallButton.style.display = 'none';
+    narrativeContainerDiv.innerText = roomDescription[2]
     console.log('buttons hidden')
       })
 
@@ -235,6 +242,7 @@ navVaultToOrbButton.addEventListener('click', () => {
       navHallToRoom2Button.style.display = 'none';
       navHallToRoom3Button.style.display = 'none';
       navRoomToHallButton.style.display = 'none';
+      narrativeContainerDiv.innerText = roomDescription[6]
       console.log('buttons hidden')
         })
 
@@ -252,6 +260,7 @@ navVaultToOrbButton.addEventListener('click', () => {
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
+    narrativeContainerDiv.innerText = roomDescription[5]
     console.log('buttons hidden')
       })
 
@@ -269,6 +278,7 @@ navVaultToOrbButton.addEventListener('click', () => {
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
+    narrativeContainerDiv.innerText = roomDescription[4]
     console.log('buttons hidden')
       })
 
@@ -286,6 +296,7 @@ navVaultToOrbButton.addEventListener('click', () => {
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
+    narrativeContainerDiv.innerText = roomDescription[3]
     console.log('buttons hidden')
     })
     navRoomToHallButton.addEventListener('click', () => {
@@ -333,13 +344,8 @@ function startCountdown() {
 }
 
 /******************************** Life bar ********************************/
-let lifeProgress = 100
-lifeBarProgress.style.width = `${lifeProgress}%`
-
-/******************************** New Game Instance ********************************/
-  // // Create a new game
-  // const game = new Game(rooms, events);
-
+playerLifeContainer.style.width = `${playerLife}%`
+playerLifeContainer.style.backgroundColor = "red"
 
 /******************************** Restart Button ********************************/
 navRetryButton.addEventListener('click', () => {
@@ -348,9 +354,14 @@ navRetryButton.addEventListener('click', () => {
   console.log("clicking to restart.");
   clearInterval()
   console.log("Timer reset")
-  let lifeProgress = 100
-  let BossLifeProgress = 100
   console.log('Life Stats reset')
+  playerLife = 100
+  bossLife = 100
     })
+
+  
+/******************************** New Game Instance ********************************/
+  // Create a new game
+const game = new Game(rooms, time, playerLife, bosslife)
 
 }) // end of Index

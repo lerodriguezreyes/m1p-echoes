@@ -30,8 +30,6 @@
             <br>
         </header>
 
-
-
         <!-- The section below contains the landing page with buttons  start game and high scores menu. -->
         <section id="landingScreen" class="view">
             <div class="image-container">
@@ -83,15 +81,13 @@
             <div class="gameImageContainer">
                 <img src="https://shorturl.at/vDM58" id="roomImage" width="500" height="600" >
                 <div id="hud">
-                    <div id="resultLifeBar">
-                        <div id="lifeBarProgress"></div>
-                    </div>
+                    <div id="playerLifeBar"></div>
                     <div id="timeRemaining">Remaining Time: <span>05:00</span></div>
                 </div>
-                <div class="narrativeContainer"></div>
-                <div class="choicesContainer"></div>
-                <div class="eventContainer"></div>
-                <div class="notesContainer"></div>
+                <div id="narrative"></div>
+                <div id="choices"></div>
+                <div id="event"></div>
+                <div id="notes"></div>
             </div>
             <div>
                 <button id="navVaultToOrb">Venture forth</button>
@@ -106,7 +102,7 @@
         </section>
 
     <!-- The section below contains the Game Over scene -->
-    <section id="gameOver" class= "view" style="display: none;">
+        <section id="gameOver" class= "view" style="display: none;">
         <div class="container">
             
             <img src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/gameLost.png" alt="Monster Arises" width="500" height="600"/>
@@ -124,28 +120,27 @@
 
         </div>
 
-    </section>
+        </section>
 
     <!-- The section below contains the Game Won scene -->
-    <section id="gameWon" class= "view" style="display: none;">
-        
-        <div class="container">    
+        <section id="gameWon" class= "view" style="display: none;">
             
-            <img src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/gameWon.jpg" alt="Adventure begins." width="500" height="600"/>
+            <div class="container">    
+                
+                <img src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/gameWon.jpg" alt="Adventure begins." width="500" height="600"/>
+                
+                <h2 class="won">You Survived!</h2>
+                
+                <p class = "end">After braving unknown horrors, the vault door opens. Instead of returning to the SCP Foundation, you find yourself greeted by Dustin in front of a strange portal. He says, "Took you long enough, breaks over. Now the fun really begins!" You think to yourself, <em>there really is no rest for the wicked.</em></p>
+            </div>
             
-            <h2 class="won">You Survived!</h2>
+                <div id="restartButton">
             
-            <p class = "end">After braving unknown horrors, the vault door opens. Instead of returning to the SCP Foundation, you find yourself greeted by Dustin in front of a strange portal. He says, "Took you long enough, breaks over. Now the fun really begins!" You think to yourself, <em>there really is no rest for the wicked.</em></p>
-        </div>
-        
-        <div id="restartButton">
-        
-            <button class="navButton">Play Again?</button>
-        
-        </div>    
+                <button class="navButton">Play Again?</button>
+            
+            </div>    
 
-    </section>
-
+        </section>
 
         <!-- Music commented out because it is annoying while working :) -->
         <!-- Still need to make it autoplay on load and hide controls. -->
@@ -166,7 +161,7 @@
         </footer>
 
         <script src="./src/rooms.js"></script>
-        <script src="./src/events.js"></script>
+        <script src="./src/game.js"></script>
         <script src="./src/echoesIndex.js"></script>
 </body>
 
