@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/ciphertest.css" />
+    <title> Transcendent Echoes </title>
+    <link rel="icon" type="image/png" href="https://img.icons8.com/ios-glyphs/30/monster-mouth.png"
+        alt="monster-mouth" />
+    <link href="https://fonts.cdnfonts.com/css/frieska" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/bacasime-antique" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/faithful-hand" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/catynburg-browling" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/catynburg-browling" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <main>
+        
+        <header>
+            <div>
+                <h2> Transcendent </h2>
+            </div>
+            <div>
+                <h1> Echoes </h1>
+            </div>
+            <br>
+        </header>
+<section id="gamePlayScreen" class="view">
+    <div class="gameImageContainer">
+        <img src="./images/alternateLab.jpg" id="roomImage" width="500" height="600" >
+        <div id="hud">
+            <div id="playerLifeBar"> playerLifeBar</div>
+            <div id="timeRemaining">Remaining Time: <span>05:00</span></div>
+        </div>
+        <div id="cipherContainer">
+                <img class="image1" src="./images/cipherEdit.png"/>
+                <img class="image2" src="./images/cipherEdit.png"/>
+                <img class="image3" src="https://img.icons8.com/ios-filled/50/000000/search--v1.png"/>
+                <div><button id="cipherButton"> Rotate </button></div>
+                
+        </div>
+        <div id="narrative"></div>
+        <div id="choices"></div>
+        <div id="choiceOptionsContainer">
+            <button id= "choice1">button 1</button>
+            <button id= "choice2">button 2</button>
+        </div>
+        <div id="event"></div>
+        <div id="notes"></div>
+    </div>
+    <div>
+        <button id="navVaultToOrb">Venture forth</button>
+        <button id="navOrbToHall">Go to next Room</button>
+        <button id="navHallToOrb">Back to the Orb</button>
+        <button id="navHallToRoom1">Go to Rooom 1</button>
+        <button id="navHallToRoom2">Go to Rooom 2</button>
+        <button id="navHallToRoom3">Go to Rooom 3</button>
+        <button id="navRoomToHall">Back to the Hall</button>
+        
+    </div>
+</section>
+</main>
+</body>
+<footer>
+    <p class="love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart" /> by Luis
+        Emmanuel </p>
+    <p class="credits"> <img width="20" height="20" style="padding-top: 5px;"
+            src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/githubLogo.png"
+            alt="github" /> <a href="https://github.com/lerodriguezreyes/m1p-echoes.git">game repository</a> -
+        credits -
+        <a
+            href="mailto:lerodriguezreyes@outlook.com?subject=About%20Your%20Transcendent%20Echoes%20Game">reachout!</a>
+    </p>
+</footer>
