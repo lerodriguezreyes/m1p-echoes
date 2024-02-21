@@ -23,6 +23,9 @@ window.addEventListener('load', () => {
     let roomImage = document.getElementById('roomImage');
     let narrativeContainerDiv = document.getElementById("narrative");
     let choicesContainerDiv = document.getElementById("choices");
+    let choiceOptionsContainer = document.getElementById('choiceOptionsContainer')
+    let choice1Button = document.getElementById('choice1');
+    let choice2Button = document.getElementById('choice2');
     let eventContainerDiv = document.getElementById("event");
     let notesContainerDiv = document.getElementById("notes");
     
@@ -145,6 +148,42 @@ window.addEventListener('load', () => {
         `I have double checked the wards lining the bunker, and I did not find any evidence of physical, technological or arcane weakening. This is as solid and secure as it gets. Guess we have to wait for the timer to run out… Nope X that idea. The thing is here again, we cannot stay here! Whatever it is, its getting smarter. It is finding us faster. It must be pushing in harder. ~ ${randomName}`
      ] 
     
+     const choices = [
+      
+      'What will you do?', 
+
+      'Will you read on or heed your own counsel?', 
+      
+      "There's got to be something here to explain what's going on.", 
+      
+      "Will you search this room?",
+      
+      "Investigating is tough work. Will you rest?", 
+      
+      "I'm stuck here, might as well search for something useful. Now where to look..."
+     
+    ]
+
+     const choicesOptions = [ 
+      "Inspect the room",
+
+      "Touch the Orb",
+
+      "Read the second page",
+
+      "Keep exploring",
+
+      "Yes",
+
+      "No",
+
+      "Supply closet",
+
+      "Chemical stack",
+
+      "Materials rack"
+     ]
+    
      const rooms = [ 
       
       // Vault Entrance Room
@@ -163,9 +202,10 @@ window.addEventListener('load', () => {
       new Room (roomDescription, "Investigating is tough work. Will you rest?",["Yes","No"], 4, 20),
   
       // Pristine Laboratory
-      new Room (roomDescription, "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Chemical stack", "Materials rack"], 5, 5),
+      new Room (roomDescription, "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Materials rack"], 5, 5),
        
     ]
+
 
 /******************************** Timer ********************************/
 let time = 300 //game lasts for 300 seconds
@@ -201,6 +241,7 @@ playerLifeContainer.style.backgroundColor = "red"
 /******************************** New Game Instance ********************************/
   // Create a new game
   const game = new Game(rooms, time, playerLife)
+  // room rendering
 
 /************************************* Room configuration  *************************************/ 
     // TO DO: navLandingToHighScores / navHighScoresToLanding
@@ -215,13 +256,6 @@ playerLifeContainer.style.backgroundColor = "red"
   // image change
   roomImage.src = roomImagesArray[0]
   console.log('image changed');
-
-  // // narrative change  
-  // narrativeContainerDiv.innerText = roomDescription[0]
-  // console.log('room description loaded')
-
-
-  //  notesContainerDiv.innerText = plaqueNote
 
   // room navigation
   navVaultToOrbButton.style.display = 'flex';
@@ -245,9 +279,28 @@ playerLifeContainer.style.backgroundColor = "red"
   roomImage.src = roomImagesArray[1]
   console.log('image changed');
 
-  // // narrative change
-  // narrativeContainerDiv.innerText = roomDescription[1]
-  // console.log('description changed');
+  // narrative change
+  narrativeContainerDiv.innerText = roomDescription[1]
+  console.log('description changed');
+
+  // choices change
+  choicesContainerDiv.innerText = choices[0]
+  console.log('choices changed');
+
+  // choices options change
+  choice1Button.innerText = choicesOptions[0]
+  choice1Button.addEventListener('click', () =>{
+    game.envCheck()
+    console.log("cliking for environment check")
+  })
+  
+  choice2Button.innerText = choicesOptions[1]
+  choice2Button.addEventListener('click', () =>{
+    game.envCheck()
+    console.log("cliking for environment check")
+  })
+
+  console.log('choices options changed');
 
   // start timer
   startCountdown();
@@ -282,7 +335,6 @@ playerLifeContainer.style.backgroundColor = "red"
   navHallToRoom2Button.style.display = 'flex';
   navHallToRoom3Button.style.display = 'flex';
   navRoomToHallButton.style.display = 'none';
-  // narrativeContainerDiv.innerText = roomDescription[2]
   console.log('buttons hidden')
     })
 
@@ -300,7 +352,6 @@ playerLifeContainer.style.backgroundColor = "red"
       navHallToRoom2Button.style.display = 'none';
       navHallToRoom3Button.style.display = 'none';
       navRoomToHallButton.style.display = 'none';
-      // narrativeContainerDiv.innerText = roomDescription[6]
       console.log('buttons hidden')
         })
 
@@ -318,7 +369,6 @@ playerLifeContainer.style.backgroundColor = "red"
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
-    // narrativeContainerDiv.innerText = roomDescription[5]
     console.log('buttons hidden')
       })
 
@@ -336,7 +386,6 @@ playerLifeContainer.style.backgroundColor = "red"
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
-    // narrativeContainerDiv.innerText = roomDescription[4]
     console.log('buttons hidden')
       })
 
@@ -354,7 +403,6 @@ playerLifeContainer.style.backgroundColor = "red"
     navHallToRoom2Button.style.display = 'none';
     navHallToRoom3Button.style.display = 'none';
     navRoomToHallButton.style.display = 'flex';
-    // narrativeContainerDiv.innerText = roomDescription[3]
     console.log('buttons hidden')
     })
     navRoomToHallButton.addEventListener('click', () => {
@@ -381,9 +429,9 @@ navRetryButton.addEventListener('click', () => {
   console.log("clicking to restart.");
   clearInterval()
   console.log("Timer reset")
-  console.log('Life Stats reset')
   playerLife = 100
   bossLife = 100
+  console.log('Life Stats reset')
     })
 
   
