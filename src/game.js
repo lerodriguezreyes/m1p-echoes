@@ -51,9 +51,9 @@ class Game {
     return roll;
   }
 
-  // Environment check mechanics
-  envCheck() {
-    let playerCheck = this.playerDiceRoll();
+  // Environment check mechanics, NEED TO CHECK KEEPS GIVING PASS.
+  envCheck(){  
+    let playerCheck = this.playerDiceRoll()
     if (playerCheck < this.room[3]) {
       this.timeRemaining - 10;
       console.log("Environment check failed!");
