@@ -1,9 +1,25 @@
 class Room {
-  constructor(roomDescription, roomChoices, playerChoice, dc, roomIndex) {
-    this.roomDescription = roomDescription[this.roomIndex];
-    this.roomChoices = roomChoices[this.roomIndex];
+  constructor(roomDescription, roomChoices, playerChoice, currentPosition, dc) {
+    this.roomDescription = roomDescription;
+    this.roomChoices = roomChoices;
     this.playerChoice = playerChoice;
     this.dc = dc;
-    this.roomIndex = 0
+    this.currentPosition = currentPosition;
+  }
+
+  getRoomDescription() {
+    return this.roomDescription[currentPosition];
+  }
+
+  getRoomChoices() {
+    return this.roomChoices[currentPosition];
+  }
+
+  getRoomChoices() {
+    return this.playerChoice[currentPosition];
+  }
+
+  getDc() {
+    return this.dc[currentPosition];
   }
 }

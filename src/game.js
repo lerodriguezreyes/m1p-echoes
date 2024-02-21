@@ -3,14 +3,18 @@ class Game {
     room,
     timeRemaining,
     playerLife,
-    bossLife,
   ) {
     this.room = room;
     this.timeRemaining = timeRemaining;
     this.playerLife = playerLife;
-    this.bossLife = bossLife;
-    this.currentPosition = 0;
+    this.bossLife = 100;
   }
+
+  getRoom(){
+    return this.room
+  }
+
+  
 
   isGameOver() {
     if (this.playerLife < 0) {
@@ -49,15 +53,15 @@ class Game {
 
   // Environment check mechanics
   envCheck() {
-    let playerCheck = playerDiceRoll();
-    if (playerCheck < room[3]) {
+    let playerCheck = this.playerDiceRoll();
+    if (playerCheck < this.room[3]) {
       this.timeRemaining - 10;
       console.log("Environment check failed!");
-      isGameOver();
+      this.isGameOver();
     } else {
         this.timeRemaining - 5;
       console.log("Environment check passed!");
-      isGameOver();
+      this.isGameOver();
     }
   }
 
@@ -65,14 +69,14 @@ class Game {
 
   // Mob fight combat method To Do: Incorporate alert for player consecuences after combat.
   mobCombat() {
-    let mobAttack = mobDiceRoll();
-    let playerAttack = playerDiceRoll();
+    let mobAttack = this.mobDiceRoll();
+    let playerAttack = this.playerDiceRoll();
     this.timeRemaining - 15;
-    isGameOver();
+    this.isGameOver();
     if (mobAttack > playerAttack) {
       console.log("Attack outcome: Mob Wins.");
       this.playerLife - 25;
-      isGameOver();
+      this.isGameOver();
     } else {
       console.log("Attack outcome: Player Wins.");
     }
@@ -80,18 +84,18 @@ class Game {
 
   bossCombat() {
     for (let i = 0; i < 3; i++) {
-      let bossAttack = mobDiceRoll();
-      let playerAttack = playerDiceRoll();
+      let bossAttack = this.mobDiceRoll();
+      let playerAttack = this.playerDiceRoll();
       this.timeRemaining - 10;
-      GameOver();
+      this.GameOver();
       if (bossAttack > playerAttack) {
         console.log("Attack outcome: Mob Wins.");
         this.playerLife - 25;
-        isGameOver();
+        this.isGameOver();
       } else {
         console.log("Attack outcome: Player Wins.");
         this.bossLife - 25;
-        isGameWon();
+        this.isGameWon();
       }
     }
   }
