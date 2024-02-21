@@ -53,7 +53,7 @@ class Game {
 
   // Environment check mechanics, NEED TO CHECK KEEPS GIVING PASS.
   envCheck(){  
-    let playerCheck = this.playerDiceRoll()
+    let playerCheck = playerDiceRoll()
     if (playerCheck < this.room[3]) {
       this.timeRemaining - 10;
       console.log("Environment check failed!");
@@ -67,34 +67,50 @@ class Game {
 
   // Combat mechanics
 
-  // Mob fight combat method To Do: Incorporate alert for player consecuences after combat.
+  // Mob fight combat method To Do: Incorporate alerts for combat.
+  // Maybe something like this.
+        //<button onclick="myFunction()">Try it</button>
+
+        /*function myFunction() {
+          alert("Hello! I am an alert box!");
+        }*/
+
+
   mobCombat() {
-    let mobAttack = this.mobDiceRoll();
-    let playerAttack = this.playerDiceRoll();
+    let mobAttack = mobDiceRoll();
+    // EXTRA it would be cool to animate a d20 dice roll here.
+    let playerAttack = playerDiceRoll();
+    // EXTRA it would be cool to animate a d20 dice roll here.
     this.timeRemaining - 15;
     this.isGameOver();
     if (mobAttack > playerAttack) {
       console.log("Attack outcome: Mob Wins.");
+      alert("The enemy attacked you and ran off! -25 HP");
       this.playerLife - 25;
       this.isGameOver();
     } else {
       console.log("Attack outcome: Player Wins.");
+      alert("Well done IronHunter. You slayed an enemy!");
+      ;
     }
   }
 
   bossCombat() {
     for (let i = 0; i < 3; i++) {
-      let bossAttack = this.mobDiceRoll();
-      let playerAttack = this.playerDiceRoll();
+      let bossAttack = mobDiceRoll();
+      let playerAttack = playerDiceRoll();
       this.timeRemaining - 10;
       this.GameOver();
       if (bossAttack > playerAttack) {
+        alert("The boss attacked you. Tendrils of psychic damage run over your mind. -25 HP")
         console.log("Attack outcome: Mob Wins.");
         this.playerLife - 25;
+
         this.isGameOver();
       } else {
         console.log("Attack outcome: Player Wins.");
         this.bossLife - 25;
+        alert("Take that you eldritch fiend! You deal -25 HP damage to the Boss with your weapon.")
         this.isGameWon();
       }
     }
