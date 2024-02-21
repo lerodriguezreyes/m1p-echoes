@@ -28,6 +28,7 @@ window.addEventListener('load', () => {
     let choice2Button = document.getElementById('choice2');
     let eventContainerDiv = document.getElementById("event");
     let notesContainerDiv = document.getElementById("notes");
+    let cipherButton = document.getElementById("cipherButton")
     
     //Game HUD
     const playerLifeContainer = document.getElementById('playerLifeBar');
@@ -438,6 +439,19 @@ navRetryButton.addEventListener('click', () => {
   console.log('Life Stats reset')
     })
 
-  
+/******************************** Restart Button ********************************/
+ let cipherImage2 = document.getElementById('image2')
+ let rotation = 0;
+ const angle = 15;
+ function rotateCipher(){
+  rotation = (rotation + angle) % 360;
+  image2.style.transform = `rotate(${rotation}deg)`;
+ }
+
+  cipherButton.addEventListener('click', () => {
+    console.log("clicking")
+    rotateCipher()
+    console.log("image rotated")
+  })
 
 }) // end of Index
