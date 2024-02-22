@@ -14,32 +14,33 @@ class Game {
     roomImage,
     narrativeContainer
   ) {
-    this.roomIndex++;
-    this.currentRoom = this.room[this.roomIndex];
-    roomImage.src = this.currentRoom.image;
-    console.log(this.currentRoom);
-    console.log(this.roomIndex);
-    question.innerText = this.currentRoom.roomChoices;
-    firstChoice.innerText = this.currentRoom.playerChoice[0];
-    secondChoice.innerText = this.currentRoom.playerChoice[1];
-    narrativeContainer.innerText = this.currentRoom.roomDescription;
+    if (this.roomIndex !== 6) {
+      this.roomIndex++;
+      this.currentRoom = this.room[this.roomIndex];
+      roomImage.src = this.currentRoom.image;
+      console.log(this.currentRoom);
+      console.log(this.roomIndex);
+      question.innerText = this.currentRoom.roomChoices;
+      firstChoice.innerText = this.currentRoom.playerChoice[0];
+      secondChoice.innerText = this.currentRoom.playerChoice[1];
+      narrativeContainer.innerText = this.currentRoom.roomDescription;
+    } else {
+      console.log("Room not changing because you're at the end.");
+    }
   }
 
   isGameOver() {
     if (this.playerLife < 0) {
       console.log("Game Over: Player is dead.");
-      clearInterval(timer);
-      gamePlayScreen.style.display = 'none';
-      gamePlayScreen.style.height = '0px';
-      console.log("gamePlayScreen closed.")
+      gamePlayScreen.style.display = "none";
+      gamePlayScreen.style.height = "0px";
+      console.log("gamePlayScreen closed.");
       document.getElementById("gameOver").style.display = "flex";
-
     } else if (this.timeRemaining <= 0) {
       console.log("Game Over: Time is up!");
-      clearInterval(timer);
-      gamePlayScreen.style.display = 'none';
-      gamePlayScreen.style.height = '0px';
-      console.log("gamePlayScreen closed.")
+      gamePlayScreen.style.display = "none";
+      gamePlayScreen.style.height = "0px";
+      console.log("gamePlayScreen closed.");
       document.getElementById("gameOver").style.display = "flex";
     }
   }
@@ -47,15 +48,14 @@ class Game {
   isGameWon() {
     if (this.bossLife <= 0) {
       console.log("Game won: Boss is dead!");
-      clearInterval(timer);
-      landingScreen.style.display = 'none';
-      landingScreen.style.height = '0p';
-      gamePlayScreen.style.display = 'none';
-      gamePlayScreen.style.height = '0p';
-      console.log("gamePlayScreen closed.")
+      landingScreen.style.display = "none";
+      landingScreen.style.height = "0p";
+      gamePlayScreen.style.display = "none";
+      gamePlayScreen.style.height = "0p";
+      console.log("gamePlayScreen closed.");
       document.getElementById("gameWon").gameWonScreen.style.display = "flex";
+    }
   }
-}
 
   // Player rolls
   playerDiceRoll() {
@@ -78,19 +78,19 @@ class Game {
     let playerCheck = this.playerDiceRoll();
 
     if (playerCheck < this.currentRoom.dc) {
-      console.log('This current room ----> ', this.currentRoom)
-      console.log("Player life before the check ----> ",this.playerLife )
-      this.playerLife -= 100;
-      console.log("Player life after the check ---->", this.playerLife)
+      console.log("This current room ----> ", this.currentRoom);
+      console.log("Player life before the check ----> ", this.playerLife);
+      this.playerLife -= 25;
+      console.log("Player life after the check ---->", this.playerLife);
       this.timeRemaining -= 10;
-      console.log("Time after the check ---->", this.timeRemaining )
+      console.log("Time after the check ---->", this.timeRemaining);
       console.log("Environment check failed!");
       if (!this.isGameOver()) {
         this.currentRoom = this.room[2];
       }
     } else {
       console.log("Environment check passed!");
-      this.timeRemaining -=5;
+      this.timeRemaining -= 5;
       if (!this.isGameOver()) {
         this.currentRoom = this.room[2];
       }
