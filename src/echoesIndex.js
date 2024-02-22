@@ -149,72 +149,78 @@ window.addEventListener('load', () => {
         `I have double checked the wards lining the bunker, and I did not find any evidence of physical, technological or arcane weakening. This is as solid and secure as it gets. Guess we have to wait for the timer to run out… Nope X that idea. The thing is here again, we cannot stay here! Whatever it is, its getting smarter. It is finding us faster. It must be pushing in harder. ~ ${randomName}`
      ] 
     
-     const choices = [
+    //  const choices = [
       
-      'What will you do?', 
+    //   'What will you do?', 
 
-      'Will you read on or heed your own counsel?', 
+    //   'Will you read on or heed your own counsel?', 
       
-      "There's got to be something here to explain what's going on.", 
+    //   "There's got to be something here to explain what's going on.", 
       
-      "Will you search this room?",
+    //   "Will you search this room?",
       
-      "Investigating is tough work. Will you rest?", 
+    //   "Investigating is tough work. Will you rest?", 
       
-      "I'm stuck here, might as well search for something useful. Now where to look..."
+    //   "I'm stuck here, might as well search for something useful. Now where to look..."
      
-    ]
+    // ]
 
-     const choicesOptions = [ 
-      "Inspect the room",
+    //  const choicesOptions = [ 
+    //   "Inspect the room",
 
-      "Touch the Orb",
+    //   "Touch the Orb",
 
-      "Read the second page",
+    //   "Read the second page",
 
-      "Keep exploring",
+    //   "Keep exploring",
 
-      "Yes",
+    //   "Yes",
 
-      "No",
+    //   "No",
 
-      "Supply closet",
+    //   "Supply closet",
 
-      "Chemical stack",
+    //   "Chemical stack",
 
-      "Materials rack"
-     ]
+    //   "Materials rack"
+    //  ]
+   
+
+
     
      const rooms = [ 
       
       // Vault Entrance Room
-      new Room (roomDescription, plaqueNote, '', 0, 0),
+      new Room (roomDescription[0], plaqueNote, '', 0, 0,roomImagesArray[0]),
+      
 
       // Orb Room
-      new Room (roomDescription,"What will you do?", ["Inspect the room",  "Touch the Orb"], 1, 10),
+      new Room (roomDescription[1],"What will you do?", ["Inspect the room",  "Touch the Orb"], 1, 10, roomImagesArray[1]),
 
       // Hallway
-      new Room (roomDescription, "Will you read on or heed your own counsel?", ["Read the second page", "Keep exploring"], 2, 1),
+      new Room (roomDescription[2], "Will you read on or heed your own counsel?", ["Read the second page", "Keep exploring"], 2, 1, roomImagesArray[2]),
       
       // Destroyed Laboratory
-      new Room (roomDescription, "There's got to be something here to explain what's going on. Will you search this room?", ["Yes","No"], 3, 5),
+      new Room (roomDescription[3], "There's got to be something here to explain what's going on. Will you search this room?", ["Yes","No"], 3, 5, roomImagesArray[3]),
       
       // Living Cuarters
-      new Room (roomDescription, "Investigating is tough work. Will you rest?",["Yes","No"], 4, 20),
+      new Room (roomDescription[4], "Investigating is tough work. Will you rest?",["Yes","No"], 4, 20, roomImagesArray[4]),
   
       // Pristine Laboratory
-      new Room (roomDescription, "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Materials rack"], 5, 5),
+      new Room (roomDescription[5], "I'm stuck here, might as well search for something useful. Now where to look...", ["Supply closet", "Materials rack"], 5, 5, roomImagesArray[5]),
        
     ]
 
-
-/******************************** Timer ********************************/
-let time = 300 //game lasts for 300 seconds
-let timer;
+    
+    /******************************** Timer ********************************/
+    let time = 300 //game lasts for 300 seconds
+    let timer;
+    const game = new Game(rooms, time, playerLife)
 
 function startCountdown() {
   let time = 300 
-  console.log("timer start");
+  game.timeRemaining = time
+
   let minutes = Math.floor(time / 60).toString().padStart(2, "0");
   let seconds = (time % 60).toString().padStart(2, "0");
   timeRemainingContainer.innerText = `${minutes}:${seconds}`;
@@ -224,9 +230,13 @@ function startCountdown() {
      minutes = Math.floor(time / 60).toString().padStart(2, "0");
      seconds = (time % 60).toString().padStart(2, "0");
 
-
+    game.timeRemaining = time
+    console.log(game.timeRemaining);
     time--;
     timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+
+    /// MVP - win loss logic, styling. 
 
     if (time <= 0) {
       clearInterval();
@@ -238,10 +248,10 @@ function startCountdown() {
 /******************************** Life bar ********************************/
 playerLifeContainer.style.width = `${playerLife}%`
 playerLifeContainer.style.backgroundColor = "red"
+playerLifeContainer.style.height = `5px`
 
 /******************************** New Game Instance ********************************/
   // Create a new game
-  const game = new Game(rooms, time, playerLife)
   // room rendering
 
 /************************************* Room configuration  *************************************/ 
@@ -271,36 +281,45 @@ playerLifeContainer.style.backgroundColor = "red"
 
   // Orb room
   navVaultToOrbButton.addEventListener('click', () => {
+    game.currentRoom = rooms[1]
+    game.roomIndex = 1
+
+
+
   landingScreen.style.display = 'none';
   landingScreen.style.height = '0p';
   gamePlayScreen.style.display = 'flex';
   console.log("clicking start for vault room");
   
   // image change
-  roomImage.src = roomImagesArray[1]
+  roomImage.src = game.currentRoom.image
   console.log('image changed');
 
   // narrative change
-  narrativeContainerDiv.innerText = roomDescription[1]
+  narrativeContainerDiv.innerText = game.currentRoom.roomDescription
   console.log('description changed');
 
   // choices change
-  choicesContainerDiv.innerText = choices[0]
-  console.log('choices changed');
 
+  choicesContainerDiv.innerText = game.currentRoom.roomChoices
+  console.log('choices changed');
+  
   // choices options change
   // maybe add and then remove event listeners for each room?
   // or multiple choose buttons similar to navigation. 
   //myDIV.removeEventListener("mousemove", myFunction);
-  choice1Button.innerText = choicesOptions[0]
+  choice1Button.innerText = game.currentRoom.playerChoice[0]
   choice1Button.addEventListener('click', () =>{
     game.envCheck()
+    game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
+   
     console.log("cliking for environment check")
   })
   
-  choice2Button.innerText = choicesOptions[1]
+  choice2Button.innerText =  game.currentRoom.playerChoice[1]
   choice2Button.addEventListener('click', () =>{
     game.envCheck()
+    game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
     console.log("cliking for environment check")
   })
 
@@ -312,132 +331,145 @@ playerLifeContainer.style.backgroundColor = "red"
   console.log('coundown');
 
 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
   // room navigation
-  navVaultToOrbButton.style.display = 'none';
-  navOrbToHallButton.style.display = 'flex';
-  navHallToOrbButton.style.display = 'none';
-  navHallToRoom1Button.style.display = 'none';
-  navHallToRoom2Button.style.display = 'none';
-  navHallToRoom3Button.style.display = 'none';
-  navRoomToHallButton.style.display = 'none';
-  console.log('uneeded buttons hidden')
+  // navVaultToOrbButton.style.display = 'none';
+  // navOrbToHallButton.style.display = 'flex';
+  // navHallToOrbButton.style.display = 'none';
+  // navHallToRoom1Button.style.display = 'none';
+  // navHallToRoom2Button.style.display = 'none';
+  // navHallToRoom3Button.style.display = 'none';
+  // navRoomToHallButton.style.display = 'none';
+  // console.log('uneeded buttons hidden')
   
     })
   
-  // hall 
-  // TO DO: Need to work on the button styling to have them stay in line
-  navOrbToHallButton.addEventListener('click', () => {
-  landingScreen.style.display = 'none';
-  landingScreen.style.height = '0p';
-  gamePlayScreen.style.display = 'flex';
-  console.log("clicking start for vault room");
-  roomImage.src = roomImagesArray[2]
-  console.log('image changed');
-  navVaultToOrbButton.style.display = 'none';
-  navOrbToHallButton.style.display = 'none';
-  navHallToOrbButton.style.display = 'flex';
-  navHallToRoom1Button.style.display = 'flex';
-  navHallToRoom2Button.style.display = 'flex';
-  navHallToRoom3Button.style.display = 'flex';
-  navRoomToHallButton.style.display = 'none';
-  console.log('buttons hidden')
-    })
+//   // hall 
+//   // TO DO: Need to work on the button styling to have them stay in line
+//   navOrbToHallButton.addEventListener('click', () => {
+//   landingScreen.style.display = 'none';
+//   landingScreen.style.height = '0p';
+//   gamePlayScreen.style.display = 'flex';
+//   console.log("clicking start for vault room");
+//   roomImage.src = roomImagesArray[2]
+//   console.log('image changed');
+//   navVaultToOrbButton.style.display = 'none';
+//   navOrbToHallButton.style.display = 'none';
+//   navHallToOrbButton.style.display = 'flex';
+//   navHallToRoom1Button.style.display = 'flex';
+//   navHallToRoom2Button.style.display = 'flex';
+//   navHallToRoom3Button.style.display = 'flex';
+//   navRoomToHallButton.style.display = 'none';
+//   console.log('buttons hidden')
+//     })
 
-    navHallToOrbButton.addEventListener('click', () => {
-      landingScreen.style.display = 'none';
-      landingScreen.style.height = '0p';
-      gamePlayScreen.style.display = 'flex';
-      console.log("clicking start for vault room");
-      roomImage.src = roomImagesArray[1]
-      console.log('image changed');
-      navVaultToOrbButton.style.display = 'none';
-      navOrbToHallButton.style.display = 'flex';
-      navHallToOrbButton.style.display = 'none';
-      navHallToRoom1Button.style.display = 'none';
-      navHallToRoom2Button.style.display = 'none';
-      navHallToRoom3Button.style.display = 'none';
-      navRoomToHallButton.style.display = 'none';
-      console.log('buttons hidden')
-        })
+//     navHallToOrbButton.addEventListener('click', () => {
+//       landingScreen.style.display = 'none';
+//       landingScreen.style.height = '0p';
+//       gamePlayScreen.style.display = 'flex';
+//       console.log("clicking start for vault room");
+//       roomImage.src = roomImagesArray[1]
+//       console.log('image changed');
+//       navVaultToOrbButton.style.display = 'none';
+//       navOrbToHallButton.style.display = 'flex';
+//       navHallToOrbButton.style.display = 'none';
+//       navHallToRoom1Button.style.display = 'none';
+//       navHallToRoom2Button.style.display = 'none';
+//       navHallToRoom3Button.style.display = 'none';
+//       navRoomToHallButton.style.display = 'none';
+//       console.log('buttons hidden')
+//         })
 
-  navHallToRoom1Button.addEventListener('click', () => {
-    landingScreen.style.display = 'none';
-    landingScreen.style.height = '0p';
-    gamePlayScreen.style.display = 'flex';
-    console.log("clicking start for vault room");
-    roomImage.src = roomImagesArray[3]
-    console.log('image changed');
-    navVaultToOrbButton.style.display = 'none';
-    navOrbToHallButton.style.display = 'none';
-    navHallToOrbButton.style.display = 'none';
-    navHallToRoom1Button.style.display = 'none';
-    navHallToRoom2Button.style.display = 'none';
-    navHallToRoom3Button.style.display = 'none';
-    navRoomToHallButton.style.display = 'flex';
-    console.log('buttons hidden')
-      })
+//   navHallToRoom1Button.addEventListener('click', () => {
+//     landingScreen.style.display = 'none';
+//     landingScreen.style.height = '0p';
+//     gamePlayScreen.style.display = 'flex';
+//     console.log("clicking start for vault room");
+//     roomImage.src = game.currentRoom.image
+//     console.log('image changed');
+//     navVaultToOrbButton.style.display = 'none';
+//     navOrbToHallButton.style.display = 'none';
+//     navHallToOrbButton.style.display = 'none';
+//     navHallToRoom1Button.style.display = 'none';
+//     navHallToRoom2Button.style.display = 'none';
+//     navHallToRoom3Button.style.display = 'none';
+//     navRoomToHallButton.style.display = 'flex';
+//     console.log('buttons hidden')
+//       })
 
-  navHallToRoom2Button.addEventListener('click', () => {
-    landingScreen.style.display = 'none';
-    landingScreen.style.height = '0p';
-    gamePlayScreen.style.display = 'flex';
-    console.log("clicking start for vault room");
-    roomImage.src = roomImagesArray[4]
-    console.log('image changed');
-    navVaultToOrbButton.style.display = 'none';
-    navOrbToHallButton.style.display = 'none';
-    navHallToOrbButton.style.display = 'none';
-    navHallToRoom1Button.style.display = 'none';
-    navHallToRoom2Button.style.display = 'none';
-    navHallToRoom3Button.style.display = 'none';
-    navRoomToHallButton.style.display = 'flex';
-    console.log('buttons hidden')
-      })
+//   navHallToRoom2Button.addEventListener('click', () => {
+//     landingScreen.style.display = 'none';
+//     landingScreen.style.height = '0p';
+//     gamePlayScreen.style.display = 'flex';
+//     console.log("clicking start for vault room");
+//     roomImage.src = roomImagesArray[4]
+//     console.log('image changed');
+//     navVaultToOrbButton.style.display = 'none';
+//     navOrbToHallButton.style.display = 'none';
+//     navHallToOrbButton.style.display = 'none';
+//     navHallToRoom1Button.style.display = 'none';
+//     navHallToRoom2Button.style.display = 'none';
+//     navHallToRoom3Button.style.display = 'none';
+//     navRoomToHallButton.style.display = 'flex';
+//     console.log('buttons hidden')
+//       })
 
-  navHallToRoom3Button.addEventListener('click', () => {
-    landingScreen.style.display = 'none';
-    landingScreen.style.height = '0p';
-    gamePlayScreen.style.display = 'flex';
-    console.log("clicking start for vault room");
-    roomImage.src = roomImagesArray[5]
-    console.log('image changed');
-    navVaultToOrbButton.style.display = 'none';
-    navOrbToHallButton.style.display = 'none';
-    navHallToOrbButton.style.display = 'none';
-    navHallToRoom1Button.style.display = 'none';
-    navHallToRoom2Button.style.display = 'none';
-    navHallToRoom3Button.style.display = 'none';
-    navRoomToHallButton.style.display = 'flex';
-    console.log('buttons hidden')
-    })
-    navRoomToHallButton.addEventListener('click', () => {
-      landingScreen.style.display = 'none';
-      landingScreen.style.height = '0p';
-      gamePlayScreen.style.display = 'flex';
-      console.log("clicking start for vault room");
-      roomImage.src = roomImagesArray[2]
-      console.log('image changed');
-      navVaultToOrbButton.style.display = 'none';
-      navOrbToHallButton.style.display = 'none';
-      navHallToOrbButton.style.display = 'flex';
-      navHallToRoom1Button.style.display = 'flex';
-      navHallToRoom2Button.style.display = 'flex';
-      navHallToRoom3Button.style.display = 'flex';
-      navRoomToHallButton.style.display = 'none';
-      console.log('buttons hidden')
-      })
+//   navHallToRoom3Button.addEventListener('click', () => {
+//     landingScreen.style.display = 'none';
+//     landingScreen.style.height = '0p';
+//     gamePlayScreen.style.display = 'flex';
+//     console.log("clicking start for vault room");
+//     roomImage.src = roomImagesArray[5]
+//     console.log('image changed');
+//     navVaultToOrbButton.style.display = 'none';
+//     navOrbToHallButton.style.display = 'none';
+//     navHallToOrbButton.style.display = 'none';
+//     navHallToRoom1Button.style.display = 'none';
+//     navHallToRoom2Button.style.display = 'none';
+//     navHallToRoom3Button.style.display = 'none';
+//     navRoomToHallButton.style.display = 'flex';
+//     console.log('buttons hidden')
+//     })
+//     navRoomToHallButton.addEventListener('click', () => {
+//       landingScreen.style.display = 'none';
+//       landingScreen.style.height = '0p';
+//       gamePlayScreen.style.display = 'flex';
+//       console.log("clicking start for vault room");
+//       roomImage.src = roomImagesArray[2]
+//       console.log('image changed');
+//       navVaultToOrbButton.style.display = 'none';
+//       navOrbToHallButton.style.display = 'none';
+//       navHallToOrbButton.style.display = 'flex';
+//       navHallToRoom1Button.style.display = 'flex';
+//       navHallToRoom2Button.style.display = 'flex';
+//       navHallToRoom3Button.style.display = 'flex';
+//       navRoomToHallButton.style.display = 'none';
+//       console.log('buttons hidden')
+//       })
 
-/******************************** Restart Button ********************************/
-navRetryButton.addEventListener('click', () => {
-  gamePlayScreen.style.display = 'none';
-  landingScreen.style.display = 'flex';  
-  console.log("clicking to restart.");
-  clearInterval()
-  console.log("Timer reset")
-  playerLife = 100
-  bossLife = 100
-  console.log('Life Stats reset')
-    })
+// /******************************** Restart Button ********************************/
+// navRetryButton.addEventListener('click', () => {
+//   gamePlayScreen.style.display = 'none';
+//   landingScreen.style.display = 'flex';  
+//   console.log("clicking to restart.");
+//   clearInterval()
+//   console.log("Timer reset")
+//   playerLife = 100
+//   bossLife = 100
+//   console.log('Life Stats reset')
+//     })
 
 /******************************** Cipher Button ********************************/
  let cipherImage2 = document.getElementById('image2')
@@ -455,7 +487,7 @@ navRetryButton.addEventListener('click', () => {
   })
 
 /******************************** Hidden Object ********************************/
-
+// document.getElementById()
 
 
 }) // end of Index

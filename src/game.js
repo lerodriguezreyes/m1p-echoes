@@ -7,14 +7,27 @@ class Game {
     this.room = room;
     this.timeRemaining = timeRemaining;
     this.playerLife = playerLife;
-    this.bossLife = 100;
+    this.roomIndex = 0
+    this.currentRoom = null
   }
 
-  getRoom(){
-    return this.room
-  }
+ 
 
   
+
+
+  changeRoom(question, firstChoice, secondChoice, roomImage, narrativeContainer){
+    this.roomIndex++
+    this.currentRoom = this.room[this.roomIndex]
+    roomImage.src = this.currentRoom.image
+    console.log(this.currentRoom);
+    console.log(this.roomIndex);
+    question.innerText= this.currentRoom.roomChoices
+    firstChoice.innerText = this.currentRoom.playerChoice[0]
+    secondChoice.innerText = this.currentRoom.playerChoice[1]
+    narrativeContainer.innerText = this.currentRoom.roomDescription
+  }
+
 
   isGameOver() {
     if (this.playerLife < 0) {
@@ -53,15 +66,20 @@ class Game {
 
   // Environment check mechanics, NEED TO CHECK KEEPS GIVING PASS.
   envCheck(){  
-    let playerCheck = playerDiceRoll()
-    if (playerCheck < this.room[3]) {
+    let playerCheck = this.playerDiceRoll()
+   
+    if (playerCheck < this.currentRoom.dc) {
       this.timeRemaining - 10;
       console.log("Environment check failed!");
-      this.isGameOver();
+     if (!this.isGameOver()){
+      this.currentRoom = this.room[2]
+     }
     } else {
         this.timeRemaining - 5;
       console.log("Environment check passed!");
-      this.isGameOver();
+      if (!this.isGameOver()){
+        this.currentRoom = this.room[2]
+       }
     }
   }
 
