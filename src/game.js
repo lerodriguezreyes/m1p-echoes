@@ -1,52 +1,58 @@
 class Game {
-  constructor(
-    room,
-    timeRemaining,
-    playerLife,
-  ) {
+  constructor(room, timeRemaining, playerLife) {
     this.room = room;
     this.timeRemaining = timeRemaining;
     this.playerLife = playerLife;
-    this.roomIndex = 0
-    this.currentRoom = null
+    this.roomIndex = 0;
+    this.currentRoom = null;
   }
 
- 
-
-  
-
-
-  changeRoom(question, firstChoice, secondChoice, roomImage, narrativeContainer){
-    this.roomIndex++
-    this.currentRoom = this.room[this.roomIndex]
-    roomImage.src = this.currentRoom.image
+  changeRoom(
+    question,
+    firstChoice,
+    secondChoice,
+    roomImage,
+    narrativeContainer
+  ) {
+    this.roomIndex++;
+    this.currentRoom = this.room[this.roomIndex];
+    roomImage.src = this.currentRoom.image;
     console.log(this.currentRoom);
     console.log(this.roomIndex);
-    question.innerText= this.currentRoom.roomChoices
-    firstChoice.innerText = this.currentRoom.playerChoice[0]
-    secondChoice.innerText = this.currentRoom.playerChoice[1]
-    narrativeContainer.innerText = this.currentRoom.roomDescription
+    question.innerText = this.currentRoom.roomChoices;
+    firstChoice.innerText = this.currentRoom.playerChoice[0];
+    secondChoice.innerText = this.currentRoom.playerChoice[1];
+    narrativeContainer.innerText = this.currentRoom.roomDescription;
   }
-
 
   isGameOver() {
     if (this.playerLife < 0) {
       console.log("Game Over: Player is dead.");
-      return true;
+      gamePlayScreen.style.display = 'none';
+      gamePlayScreen.style.height = '0p';
+      console.log("gamePlayScreen closed.")
+      document.getElementById("gameOver").style.display = "flex";
+
     } else if (this.timeRemaining <= 0) {
       console.log("Game Over: Time is up!");
-      return true;
+      gamePlayScreen.style.display = 'none';
+      gamePlayScreen.style.height = '0p';
+      console.log("gamePlayScreen closed.")
+      document.getElementById("gameOver").style.display = "flex";
     }
   }
 
   isGameWon() {
     if (this.bossLife <= 0) {
       console.log("Game won: Boss is dead!");
-      return true;
-    } else {
-      return false;
-    }
+      landingScreen.style.display = 'none';
+      landingScreen.style.height = '0p';
+      gamePlayScreen.style.display = 'none';
+      gamePlayScreen.style.height = '0p';
+      console.log("gamePlayScreen closed.")
+      document.getElementById("gameWon").gameWonScreen.style.display = "flex";
   }
+}
 
   // Player rolls
   playerDiceRoll() {
@@ -65,21 +71,22 @@ class Game {
   }
 
   // Environment check mechanics, NEED TO CHECK KEEPS GIVING PASS.
-  envCheck(){  
-    let playerCheck = this.playerDiceRoll()
-   
+  envCheck() {
+    let playerCheck = this.playerDiceRoll();
+
     if (playerCheck < this.currentRoom.dc) {
+      this.playerLife - 100
       this.timeRemaining - 10;
       console.log("Environment check failed!");
-     if (!this.isGameOver()){
-      this.currentRoom = this.room[2]
-     }
+      if (!this.isGameOver()) {
+        this.currentRoom = this.room[2];
+      }
     } else {
-        this.timeRemaining - 5;
+      this.timeRemaining - 5;
       console.log("Environment check passed!");
-      if (!this.isGameOver()){
-        this.currentRoom = this.room[2]
-       }
+      if (!this.isGameOver()) {
+        this.currentRoom = this.room[2];
+      }
     }
   }
 
@@ -87,12 +94,11 @@ class Game {
 
   // Mob fight combat method To Do: Incorporate alerts for combat.
   // Maybe something like this.
-        //<button onclick="myFunction()">Try it</button>
+  //<button onclick="myFunction()">Try it</button>
 
-        /*function myFunction() {
+  /*function myFunction() {
           alert("Hello! I am an alert box!");
         }*/
-
 
   mobCombat() {
     let mobAttack = mobDiceRoll();
@@ -109,7 +115,6 @@ class Game {
     } else {
       console.log("Attack outcome: Player Wins.");
       alert("Well done IronHunter. You slayed an enemy!");
-      ;
     }
   }
 
@@ -120,7 +125,9 @@ class Game {
       this.timeRemaining - 10;
       this.GameOver();
       if (bossAttack > playerAttack) {
-        alert("The boss attacked you. Tendrils of psychic damage run over your mind. -25 HP")
+        alert(
+          "The boss attacked you. Tendrils of psychic damage run over your mind. -25 HP"
+        );
         console.log("Attack outcome: Mob Wins.");
         this.playerLife - 25;
 
@@ -128,7 +135,9 @@ class Game {
       } else {
         console.log("Attack outcome: Player Wins.");
         this.bossLife - 25;
-        alert("Take that you eldritch fiend! You deal -25 HP damage to the Boss with your weapon.")
+        alert(
+          "Take that you eldritch fiend! You deal -25 HP damage to the Boss with your weapon."
+        );
         this.isGameWon();
       }
     }
