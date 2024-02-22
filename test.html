@@ -27,7 +27,7 @@
         </header>
 
         <!-- The section below contains the landing page with buttons  start game and high scores menu. -->
-        <section id="landingScreen" class="view">
+        <section id="landingScreen" class="view" style="display: none;">
             <div class="image-container">
                 <img src=https://shorturl.at/vDM58 width="500" height="600">
             </div>
@@ -40,19 +40,18 @@
         </section>
 
         <!-- This section encloses the actual gameplay views. The idea is to have the image, hud, narrative content, choices content, navigation-->
-        <section id="gamePlayScreen" class="view" style="display: none;">
+        <section id="gamePlayScreen" class="view">
             <div class="gameImageContainer">
                 <img src="https://shorturl.at/vDM58" id="roomImage" width="500" height="600" >
-                <div id="playerLifeBar"><div id="timeRemaining">00:00</div>
-                <div id="narrative">text here</div>
-
-                <!-- Still working on the cipher. -->
-                <!-- <div id="cipherContainer"style="display: none;">
-                    <img class="image1" src="https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/cipherEdit.png?raw=true"/>
-                    <img class="image2" id="https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/cipherEdit.png?raw=true"/>
+                <div id="hud">
+                    <div id="playerLifeBar"><div id="timeRemaining">00:00</div>
+                <div id="narrative">"You are part of an organization dedicated to protecting mankind against all threats. Both known and unknown, yet now a days the threats are more... mundane in nature. During your turn of strongly encouraged asistance in organizing office supplies, find a door you've never seen before. You decide to open it. Now you find yourself in front of an intricate vault door. Next to it you see a tarnished plaque.",</div>
+                <div id="cipherContainer"style="display: none;">
+                    <img class="image1" src="./images/cipherEdit.png"/>
+                    <img class="image2" id="image2" src="./images/cipherEdit.png"/>
                     <img class="image3" src="https://img.icons8.com/ios-filled/50/000000/search--v1.png"/>
                     <div><button id="cipherButton"> Rotate </button></div>  
-                </div> -->
+                </div>
                 <div id="choices"></div>
                 <div id="choiceOptionsContainer">
                     <button id= "choice1"></button>
@@ -105,11 +104,11 @@
 
         <!-- Music commented out because it is annoying while working :) -->
             <!-- <audio controls autoplay loop>
-            <source src=".//sounds/clip30Sec.mp3" type="audio/mpeg">
+            <source src="./sounds/clip30Sec.mp3" type="audio/mpeg">
             </audio> -->
 
         <footer>
-            <p class="love"> Made with <img width="15" height="15" src="https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/love.png?raw=true" alt="filled-heart" /> by Luis
+            <p class="love"> Made with <img width="15" height="15" src="./images/love.png" alt="filled-heart" /> by Luis
                 Emmanuel </p>
             <p class="credits"> <img width="20" height="20" style="padding-top: 5px;"
                     src="https://raw.githubusercontent.com/lerodriguezreyes/m1p-echoes/main/Images/githubLogo.png"
@@ -120,9 +119,9 @@
             </p>
         </footer>
 
-        <script src="./src/rooms.js"></script>
+        <!-- <script src="./src/rooms.js"></script>
         <script src="./src/game.js"></script>
-        <script src="./src/echoesIndex.js"></script>
+        <script src="./src/echoesIndex.js"></script> -->
 </body>
 
 </html>
