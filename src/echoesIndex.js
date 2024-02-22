@@ -135,7 +135,7 @@ let playerLife = 100;
     
     }
 /******************************** Life bar ********************************/
-playerLifeContainer.style.width = `${playerLife}%`
+playerLifeContainer.style.width = `${game.playerLife}%`
 playerLifeContainer.style.backgroundColor = "red"
 playerLifeContainer.style.height = `5px`
 
@@ -212,19 +212,19 @@ playerLifeContainer.style.height = `5px`
 //     })
 
 /******************************** Cipher Button ********************************/
- let cipherImage2 = document.getElementById('image2')
- let rotation = 0;
- const angle = 15;
- function rotateCipher(){
-  rotation = (rotation + angle) % 360;
-  image2.style.transform = `rotate(${rotation}deg)`;
- }
+//  let cipherImage2 = document.getElementById('image2')
+//  let rotation = 0;
+//  const angle = 15;
+//  function rotateCipher(){
+//   rotation = (rotation + angle) % 360;
+//   image2.style.transform = `rotate(${rotation}deg)`;
+//  }
 
-  cipherButton.addEventListener('click', () => {
-    console.log("clicking")
-    rotateCipher()
-    console.log("image rotated")
-  })
+//   cipherButton.addEventListener('click', () => {
+//     console.log("clicking")
+//     rotateCipher()
+//     console.log("image rotated")
+//   })
 
 /******************************** Hidden Object ********************************/
 // document.getElementById()
