@@ -1,10 +1,8 @@
 
 window.addEventListener('load', () => {
   console.log('Connected!');
-  let playerLife = 100;
-  let time = 300
-  let timenote = 300/60
-
+let time = 300;
+let playerLife = 100;
 /******************************************* Html views  *******************************************/
   // View 
     const landingScreen = document.getElementById('landingScreen');
@@ -70,7 +68,7 @@ window.addEventListener('load', () => {
       "This expansive room once served as a laboratory. The supplies here range from weapon components, to munitions, to chemicals and biological specimens.",
         
       // Boss Battle Scene
-      "Armed with knoledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me if you dare! Next to you a grayish green portal opens.",
+      "Armed with knowledge, you gaze into the abyss and await to confront another monster. You yell into the darknes: Unknown Horror come face me if you dare! Next to you a grayish green portal opens.",
     
     ]
   
@@ -79,7 +77,7 @@ window.addEventListener('load', () => {
   
   // Game data
   
-      const plaqueNote = `Dear ${currentPlayer}, It is vital that you heed my instructions to the best of your abilities. Things are dire. Regrettably, I cannot provide further details, it could endanger us all. Rest assured; we are embarking on a hunt for the most dangerous enemy our organization has ever faced. More information awaits within the containment chamber. Upon ingress, the doors will seal behind you. You will be contained inside until the sequence automatically initiates ${timenote} hours later. It is imperative not to overlook this timeframe. Refrain from bringing anything, you will have all you need provided there. Lastly, under no circumstances should you take anything out of the vault. Wishing you all the best of luck. Your mentor, Dustin.`
+      const plaqueNote = `Dear ${currentPlayer}, It is vital that you heed my instructions to the best of your abilities. Things are dire. Regrettably, I cannot provide further details, it could endanger us all. Rest assured; we are embarking on a hunt for the most dangerous enemy our organization has ever faced. More information awaits within the containment chamber. Upon ingress, the doors will seal behind you. You will be contained inside until the sequence automatically initiates 5 hours later. It is imperative not to overlook this timeframe. Refrain from bringing anything, you will have all you need provided there. Lastly, under no circumstances should you take anything out of the vault. Wishing you all the best of luck. Your mentor, Dustin.`
   
       const hallnote = `Hi me. Yeah, this is weird. I’m taking to myself here. It’s a weird situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dustin disappeared. Long story short, Dustin's warning is real and we’re picking up the slack after he went on break. So yeah, we’re stuck here trying to bootstrap a solution from stuff we’ve cobbled up together. We're so close to figuring this out.`
   
@@ -113,26 +111,27 @@ window.addEventListener('load', () => {
 
     
     /******************************** Create game instance ********************************/
+     
     const game = new Game(rooms, time, playerLife)
-    
-    function startCountdown() {
-      let time = 300 
+    let timer;
+    game.timeRemaining = time
+    startCountdown() 
+    function startCountdown() { 
       game.timeRemaining = time
       let minutes = Math.floor(time / 60).toString().padStart(2, "0");
       let seconds = (time % 60).toString().padStart(2, "0");
       timeRemainingContainer.innerText = `${minutes}:${seconds}`;
 
       timer = setInterval(() => {
+          console.log(game.timeRemaining);
           minutes = Math.floor(time / 60).toString().padStart(2, "0");
           seconds = (time % 60).toString().padStart(2, "0");
-          game.timeRemaining = time
-          console.log(game.timeRemaining);
           time--;
           timeRemainingContainer.innerText = `${minutes}:${seconds}`;
 
     /// MVP - win loss logic, styling. Space to put it in.
     if (time <= 0) {
-      clearInterval();
+      clearInterval(timer);
       game.isGameOver();
     }
   }, 1000);
@@ -149,14 +148,11 @@ playerLifeContainer.style.height = `5px`
   // vault entrance   
   navLandingToVaultButton.addEventListener('click', () => {
   landingScreen.style.display = 'none';
-  landingScreen.style.height = '0p';
+  landingScreen.style.height = '0px';
   gamePlayScreen.style.display = 'flex';
-  console.log("clicking start for vault room");
-  
-  // image change
+  console.log("Heading to vault room");
   roomImage.src = roomImagesArray[0]
-  console.log('image changed');
-
+  narrativeContainerDiv.innerText = roomDescription[0]
     })
 
   // Orb room
@@ -167,7 +163,7 @@ playerLifeContainer.style.height = `5px`
 
 
   landingScreen.style.display = 'none';
-  landingScreen.style.height = '0p';
+  landingScreen.style.height = '0px';
   gamePlayScreen.style.display = 'flex';
   console.log("clicking start for vault room");
   
@@ -199,12 +195,9 @@ playerLifeContainer.style.height = `5px`
     console.log("cliking for environment check")
   })
 
-  
-  console.log('choices options changed');
-
   // start timer
   startCountdown();
-  console.log('coundown');
+  console.log('countdown');
   })
 
 // /******************************** Restart Button ********************************/
@@ -212,7 +205,7 @@ playerLifeContainer.style.height = `5px`
 //   gamePlayScreen.style.display = 'none';
 //   landingScreen.style.display = 'flex';  
 //   console.log("clicking to restart.");
-//   clearInterval()
+//   clearInterval(timer)
 //   console.log("Timer reset")
 //   playerLife = 100
 //   bossLife = 100

@@ -28,15 +28,17 @@ class Game {
   isGameOver() {
     if (this.playerLife < 0) {
       console.log("Game Over: Player is dead.");
+      clearInterval(timer);
       gamePlayScreen.style.display = 'none';
-      gamePlayScreen.style.height = '0p';
+      gamePlayScreen.style.height = '0px';
       console.log("gamePlayScreen closed.")
       document.getElementById("gameOver").style.display = "flex";
 
     } else if (this.timeRemaining <= 0) {
       console.log("Game Over: Time is up!");
+      clearInterval(timer);
       gamePlayScreen.style.display = 'none';
-      gamePlayScreen.style.height = '0p';
+      gamePlayScreen.style.height = '0px';
       console.log("gamePlayScreen closed.")
       document.getElementById("gameOver").style.display = "flex";
     }
@@ -45,6 +47,7 @@ class Game {
   isGameWon() {
     if (this.bossLife <= 0) {
       console.log("Game won: Boss is dead!");
+      clearInterval(timer);
       landingScreen.style.display = 'none';
       landingScreen.style.height = '0p';
       gamePlayScreen.style.display = 'none';
@@ -75,15 +78,19 @@ class Game {
     let playerCheck = this.playerDiceRoll();
 
     if (playerCheck < this.currentRoom.dc) {
-      this.playerLife - 100
-      this.timeRemaining - 10;
+      console.log('This current room ----> ', this.currentRoom)
+      console.log("Player life before the check ----> ",this.playerLife )
+      this.playerLife -= 100;
+      console.log("Player life after the check ---->", this.playerLife)
+      this.timeRemaining -= 10;
+      console.log("Time after the check ---->", this.timeRemaining )
       console.log("Environment check failed!");
       if (!this.isGameOver()) {
         this.currentRoom = this.room[2];
       }
     } else {
-      this.timeRemaining - 5;
       console.log("Environment check passed!");
+      this.timeRemaining -=5;
       if (!this.isGameOver()) {
         this.currentRoom = this.room[2];
       }
@@ -101,16 +108,16 @@ class Game {
         }*/
 
   mobCombat() {
-    let mobAttack = mobDiceRoll();
+    let mobAttack = this.mobDiceRoll();
     // EXTRA it would be cool to animate a d20 dice roll here.
-    let playerAttack = playerDiceRoll();
+    let playerAttack = this.playerDiceRoll();
     // EXTRA it would be cool to animate a d20 dice roll here.
-    this.timeRemaining - 15;
+    this.timeRemaining -= 15;
     this.isGameOver();
     if (mobAttack > playerAttack) {
       console.log("Attack outcome: Mob Wins.");
       alert("The enemy attacked you and ran off! -25 HP");
-      this.playerLife - 25;
+      this.playerLife -= 25;
       this.isGameOver();
     } else {
       console.log("Attack outcome: Player Wins.");
@@ -120,21 +127,21 @@ class Game {
 
   bossCombat() {
     for (let i = 0; i < 3; i++) {
-      let bossAttack = mobDiceRoll();
-      let playerAttack = playerDiceRoll();
-      this.timeRemaining - 10;
-      this.GameOver();
+      let bossAttack = this.mobDiceRoll();
+      let playerAttack = this.playerDiceRoll();
+      this.timeRemaining -= 10;
+      this.isGameOver();
       if (bossAttack > playerAttack) {
         alert(
           "The boss attacked you. Tendrils of psychic damage run over your mind. -25 HP"
         );
         console.log("Attack outcome: Mob Wins.");
-        this.playerLife - 25;
+        this.playerLife -= 25;
 
         this.isGameOver();
       } else {
         console.log("Attack outcome: Player Wins.");
-        this.bossLife - 25;
+        this.bossLife -= 25;
         alert(
           "Take that you eldritch fiend! You deal -25 HP damage to the Boss with your weapon."
         );
