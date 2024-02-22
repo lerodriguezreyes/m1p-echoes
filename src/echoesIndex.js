@@ -170,7 +170,7 @@ window.addEventListener('load', () => {
     
     }
 /******************************** Life bar ********************************/
-playerLifeContainer.style.width = `${game.playerLife}%`
+playerLifeContainer.style.width = `${game.playerLife/2}%`
 playerLifeContainer.style.backgroundColor = "red"
 playerLifeContainer.style.height = `5px`
 
