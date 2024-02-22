@@ -40,10 +40,6 @@ let playerLife = 100;
 
       "https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/lab1.jpg?raw=true",
 
-      "https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/gameOver.jpg?raw=true",
-
-      "https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/gameWon.png?raw=true",
-
       "https://github.com/lerodriguezreyes/m1p-echoes/blob/main/Images/mob2.png?raw=true"
     ]
   
@@ -113,31 +109,31 @@ let playerLife = 100;
     /******************************** Create game instance ********************************/
      
     const game = new Game(rooms, time, playerLife)
+
     let timer;
-    game.timeRemaining = time
-    startCountdown() 
-    function startCountdown() { 
-      game.timeRemaining = time
+    
+    function startCountdown() {
+      let time = game.timeRemaining 
+      console.log("timer start");
       let minutes = Math.floor(time / 60).toString().padStart(2, "0");
       let seconds = (time % 60).toString().padStart(2, "0");
       timeRemainingContainer.innerText = `${minutes}:${seconds}`;
-
+    
       timer = setInterval(() => {
-          console.log(game.timeRemaining);
-          minutes = Math.floor(time / 60).toString().padStart(2, "0");
-          seconds = (time % 60).toString().padStart(2, "0");
-          time--;
-          timeRemainingContainer.innerText = `${minutes}:${seconds}`;
-
-    /// MVP - win loss logic, styling. Space to put it in.
-    if (time <= 0) {
-      clearInterval(timer);
-      game.isGameOver();
+        console.log(time);
+         minutes = Math.floor(time / 60).toString().padStart(2, "0");
+         seconds = (time % 60).toString().padStart(2, "0");
+    
+    
+        time--;
+        timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+    
+        if (time <= 0) {
+          clearInterval();
+        }
+      }, 1000);
+    
     }
-  }, 1000);
-
-}
-
 /******************************** Life bar ********************************/
 playerLifeContainer.style.width = `${playerLife}%`
 playerLifeContainer.style.backgroundColor = "red"
@@ -153,10 +149,14 @@ playerLifeContainer.style.height = `5px`
   console.log("Heading to vault room");
   roomImage.src = roomImagesArray[0]
   narrativeContainerDiv.innerText = roomDescription[0]
+  navLandingToVaultButton.style.display = 'none'
+
+
     })
 
   // Orb room
   navVaultToOrbButton.addEventListener('click', () => {
+    navVaultToOrbButton.style.display = 'none'  
     game.currentRoom = rooms[1]
     game.roomIndex = 1
 
@@ -180,11 +180,11 @@ playerLifeContainer.style.height = `5px`
   choicesContainerDiv.innerText = game.currentRoom.roomChoices
   console.log('choices changed');
   
+  // buttons change
   choice1Button.innerText = game.currentRoom.playerChoice[0]
   choice1Button.addEventListener('click', () =>{
     game.envCheck()
     game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
-   
     console.log("cliking for environment check")
   })
   
@@ -192,7 +192,6 @@ playerLifeContainer.style.height = `5px`
   choice2Button.addEventListener('click', () =>{
     game.envCheck()
     game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
-    console.log("cliking for environment check")
   })
 
   // start timer
