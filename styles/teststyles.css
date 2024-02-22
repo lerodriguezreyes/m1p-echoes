@@ -1,0 +1,151 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }                
+  
+  body {
+    background-color: rgb(0,0,0);
+    color: rgb(27, 54, 5);
+    font-family: helvetica, arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 170px;
+    font-family: 'FRIESKA', sans-serif;
+    margin: 0;
+    height: 150px;
+  }
+  
+  h2 {
+    font-size: 75px;
+    font-family: 'Bacasime Antique', sans-serif;
+    margin: 0;
+    height: 85px;    
+    }
+  
+  a {
+    color:#555;
+  }
+  
+  
+  .view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-width: 100px;  
+    height: 685px;
+    max-width: 650px;
+    margin: auto;
+    border: 0px;
+    padding: 25px;
+    
+  }
+  
+  /* #cipherContainer {
+    position: absolute;
+    top: 78%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+  }
+   */
+  /* #cipherButton{
+    position: relative;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    z-index: 4;
+  } */
+    /* this is the back image */
+    /* .image1 {
+      width: 165px;
+      height:165px ;
+      position: relative;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    } */
+    /* this is the front image, should be movable */
+    /* .image2 {
+      width: 108x;
+      height: 108px;
+      position: absolute;
+      top: 22px;
+      left:30px;
+      z-index: 2;
+    }
+   */
+    /* This is the magnifier. */
+    /* .image3 {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      z-index: 3;
+      left: 44%;
+    }
+   */
+
+   /* everything under here is good to go. */
+ .died{
+    position: absolute;
+    bottom: 6%;
+  }
+  
+  .end{
+    position: absolute;
+    text-align: justify;
+    background-color: rgba(0, 0, 0, 0.534);
+    bottom: 0%;
+  }
+  
+  .won{
+    position: absolute;
+    top: 1%;
+    left: 10%
+  }
+  
+  .container {
+    position: relative;
+    text-align: right;
+    color: white;}
+  
+  button {
+    color:rgb(56,113,13);
+    background-color:#00000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 150px;
+    height: 45x;
+  }
+  
+  footer {
+    color: #555;
+    font-family: helvetica, arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+  }
+  
+  .love {
+    text-align: center;
+  }
+  
+  .credits {
+    text-align: right;
+  
+  }
+  
