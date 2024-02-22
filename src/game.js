@@ -1,10 +1,11 @@
 class Game {
-  constructor(room, timeRemaining, playerLife) {
+  constructor(room, timeRemaining, playerLife, bossLife) {
     this.room = room;
     this.timeRemaining = timeRemaining;
     this.playerLife = playerLife;
     this.roomIndex = 0;
     this.currentRoom = null;
+    this.bossLife = bossLife;
   }
 
   changeRoom(
@@ -36,12 +37,16 @@ class Game {
       gamePlayScreen.style.height = "0px";
       console.log("gamePlayScreen closed.");
       document.getElementById("gameOver").style.display = "flex";
+      return true
     } else if (this.timeRemaining <= 0) {
       console.log("Game Over: Time is up!");
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0px";
       console.log("gamePlayScreen closed.");
       document.getElementById("gameOver").style.display = "flex";
+      return true
+    } else {
+      return false
     }
   }
 
@@ -53,7 +58,8 @@ class Game {
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0p";
       console.log("gamePlayScreen closed.");
-      document.getElementById("gameWon").gameWonScreen.style.display = "flex";
+      document.getElementById("gameWon").style.display = "flex";
+      return true
     }
   }
 
@@ -99,9 +105,7 @@ class Game {
 
   // Combat mechanics
 
-  // Mob fight combat method To Do: Incorporate alerts for combat.
-  // Maybe something like this.
-  //<button onclick="myFunction()">Try it</button>
+  // Mob fight combat method 
 
   /*function myFunction() {
           alert("Hello! I am an alert box!");
@@ -126,10 +130,9 @@ class Game {
   }
 
   bossCombat() {
-    for (let i = 0; i < 3; i++) {
       let bossAttack = this.mobDiceRoll();
       let playerAttack = this.playerDiceRoll();
-      this.timeRemaining -= 10;
+      this.timeRemaining -= 5;
       this.isGameOver();
       if (bossAttack > playerAttack) {
         alert(
@@ -149,4 +152,3 @@ class Game {
       }
     }
   }
-}

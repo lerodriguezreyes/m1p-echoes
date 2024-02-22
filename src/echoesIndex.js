@@ -1,8 +1,9 @@
 
 window.addEventListener('load', () => {
   console.log('Connected!');
-let time = 300;
-let playerLife = 100;
+  let time = 120;
+  let playerLife = 150;
+  let bossLife = 100;
 /******************************************* Html views  *******************************************/
   // View 
     const landingScreen = document.getElementById('landingScreen');
@@ -108,28 +109,31 @@ let playerLife = 100;
     
     /******************************** Create game instance ********************************/
      
-    const game = new Game(rooms, time, playerLife)
+    const game = new Game(rooms, time, playerLife, bossLife)
 
     let timer;
     
     function startCountdown() {
-      let time = game.timeRemaining 
+      // let time = game.timeRemaining 
       console.log("timer start");
-      let minutes = Math.floor(time / 60).toString().padStart(2, "0");
-      let seconds = (time % 60).toString().padStart(2, "0");
+      let minutes = Math.floor(game.timeRemaining / 60).toString().padStart(2, "0");
+      let seconds = (game.timeRemaining % 60).toString().padStart(2, "0");
       timeRemainingContainer.innerText = `${minutes}:${seconds}`;
     
       timer = setInterval(() => {
-        console.log(time);
-         minutes = Math.floor(time / 60).toString().padStart(2, "0");
-         seconds = (time % 60).toString().padStart(2, "0");
+        console.log(game.timeRemaining);
+         minutes = Math.floor(game.timeRemaining / 60).toString().padStart(2, "0");
+         seconds = (game.timeRemaining % 60).toString().padStart(2, "0");
     
     
-        time--;
+        // time--;
+        game.timeRemaining--
         timeRemainingContainer.innerText = `${minutes}:${seconds}`;
-    
+        playerLifeContainer.style.width = `${game.playerLife}%`
+        game.isGameOver()
         if (time <= 0) {
-          clearInterval();
+          console.log("Time is less than or equal to zero!!!!")
+          clearInterval(timer);
         }
       }, 1000);
     
@@ -150,8 +154,6 @@ playerLifeContainer.style.height = `5px`
   roomImage.src = roomImagesArray[0]
   narrativeContainerDiv.innerText = roomDescription[0]
   navLandingToVaultButton.style.display = 'none'
-
-
     })
 
   // Orb room
@@ -183,21 +185,32 @@ playerLifeContainer.style.height = `5px`
   // buttons change
   choice1Button.innerText = game.currentRoom.playerChoice[0]
   choice1Button.addEventListener('click', () =>{
+    if (game.roomIndex == 6) {
+      console.log("BaTTLING BOSS!!!")
+      game.bossCombat()
+      return
+    }
     game.envCheck()
     game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
-    console.log("cliking for environment check")
   })
   
   choice2Button.innerText =  game.currentRoom.playerChoice[1]
   choice2Button.addEventListener('click', () =>{
-    game.envCheck()
+    if (game.roomIndex == 6) {
+      console.log("RUN!!!")
+      game.playerLife -= 100
+      game.isGameOver()
+      return
+    }
+   game.envCheck()
     game.changeRoom(choicesContainerDiv, choice1Button, choice2Button, roomImage, narrativeContainerDiv)
+    console.log("cliking for environment check")
   })
 
   // start timer
   startCountdown();
   console.log('countdown');
-  })
+  }) // start game 
 
 // /******************************** Restart Button ********************************/
 // navRetryButton.addEventListener('click', () => {
