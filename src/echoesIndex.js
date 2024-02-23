@@ -2,7 +2,7 @@ window.addEventListener("load", () => {
   console.log("Connected!");
   let time = 150;
   let playerLife = 100;
-  let bossLife = 75;
+  let bossLife = 100;
   /******************************************* Html views  *******************************************/
   // View
   const landingScreen = document.getElementById("landingScreen");
