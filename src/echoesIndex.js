@@ -51,7 +51,7 @@ window.addEventListener("load", () => {
     "Upon entering the vault, you find yourself in a 15 by 15 foot open chamber where a glowing orb sits atop a pedestal in the center. Suddendly the massive door behind you slams shut.",
 
     // Hallway Scene
-    "You end up in a long hallway dimly lit by flickering lights dangling from the ceeling and ensconed into the very foundation of the building. Up ahead you see 3 marked doors with notes. At your right you spot a bowie knife pinning 2 loose sheets of paper. The handwriting on the paper seems familiar.",
+    "You end up in a long hallway dimly lit by flickering lights dangling from the ceeling and ensconed into the very foundation of the building. Up ahead you see 3 marked doors with notes. At your right you spot a bowie knife pinning 2 loose sheets of paper. The handwriting on the paper seems familiar. The first note reads: Hi me. Yeah, this is weird. I’m taking to myself here. It’s a weird situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dustin disappeared. Long story short, Dustin's warning is real and we’re picking up the slack after he went on break. So yeah, we’re stuck here trying to bootstrap a solution from stuff we’ve cobbled up together. We're so close to figuring this out.",
 
     // Destroyed Lab Scene
     "This expansive room once served as a laboratory. It has clearly seen better days. The walls are marred with ash and scorch marks. All of the equipment is strewn across the benches haphazarly. Amidst the caos, you find a broken chest that holds a barely legible note that reads:  shift by 3.",
@@ -122,8 +122,6 @@ window.addEventListener("load", () => {
   }
 
   const plaqueNote = `Dear ${currentPlayer}, It is vital that you heed my instructions to the best of your abilities. Things are dire. Regrettably, I cannot provide further details, it could endanger us all. Rest assured; we are embarking on a hunt for the most dangerous enemy our organization has ever faced. More information awaits within the containment chamber. Upon ingress, the doors will seal behind you. You will be contained inside until the sequence automatically initiates 5 hours later. It is imperative not to overlook this timeframe. Refrain from bringing anything, you will have all you need provided there. Lastly, under no circumstances should you take anything out of the vault. Wishing you all the best of luck. Your mentor, Dustin.`;
-
-  const hallnote = `Hi me. Yeah, this is weird. I’m taking to myself here. It’s a weird situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dustin disappeared. Long story short, Dustin's warning is real and we’re picking up the slack after he went on break. So yeah, we’re stuck here trying to bootstrap a solution from stuff we’ve cobbled up together. We're so close to figuring this out.`;
 
   const hallNote2 = `Wanna know a secret? Daniel told me once this place isn’t really a containment vault. It’s a shelter. The threat's outside, somewhere… We're assuming the worst-case scenario: whatever’s out there is omniscient. This vault might be the only place in creation IT can’t directly see into. Somehow, IT messes with people’s memories. IT’s not really invisible; maybe protected by some kind of obfuscation array? Might be for the best, since once you see IT, IT can also see you. The more you learn about IT, the better IT can find you. Yeah, it’s the abyss that looks back at you stuff. I’m afraid that naming IT might escalate things. so I’m going vague. I don’t think IT’s sentient, but IT lashes out at those who perceive IT. IT's incredibly lethal, erases people from memory. SHIT, too many IT references made you aware of IT, now IT is aware of you.`;
 
@@ -201,7 +199,7 @@ window.addEventListener("load", () => {
 
   /******************************** Create game instance ********************************/
 
-  let game = new Game(rooms, time, playerLife, bossLife);
+  const game = new Game(rooms, time, playerLife, bossLife);
 
   let timer;
 
@@ -267,9 +265,7 @@ window.addEventListener("load", () => {
     choice1Button.addEventListener("click", () => {
       if (game.roomIndex == 0) {
         alert(`${plaqueNote}`);
-        // start timer
         startCountdown();
-        console.log("countdown");
         game.changeRoom(
           choicesContainerDiv,
           choice1Button,
@@ -277,6 +273,9 @@ window.addEventListener("load", () => {
           roomImage,
           narrativeContainerDiv
         );
+        document.getElementById("playerLifeBar").style.visibility = "visible";
+        document.getElementById("timeRemaining").style.visibility = "visible";
+        console.log("countdown");
         return;
       } else if (game.roomIndex == 1) {
         alert(
@@ -293,6 +292,7 @@ window.addEventListener("load", () => {
         return;
       } else if (game.roomIndex == 2) {
         alert(`${hallNote2}`);
+        game.mobCombat();
         game.changeRoom(
           choicesContainerDiv,
           choice1Button,
@@ -329,12 +329,15 @@ window.addEventListener("load", () => {
           roomImage,
           narrativeContainerDiv
         );
+        document.getElementById("playerLifeBar").style.visibility = "visible";
+        document.getElementById("timeRemaining").style.visibility = "visible";
+        console.log("countdown");
         return;
       } else if (game.roomIndex == 1) {
         alert(
           `You touch the orb. At first nothing happens, then pain like you've never felt before starts running through your veins. You suffer -25 HP.`
         );
-        game.playerLife -= 15;
+        game.playerLife -= 25;
         game.changeRoom(
           choicesContainerDiv,
           choice1Button,
