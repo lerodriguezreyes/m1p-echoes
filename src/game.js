@@ -34,8 +34,8 @@ class Game {
     if (this.playerLife < 0) {
       console.log("Game Over: Player is dead.");
       gamePlayScreen.style.display = "none";
-      gamePlayScreen.style.height = "0px":
-      this.timeRemaining += 30
+      gamePlayScreen.style.height = "0px";
+      this.timeRemaining += 30;
       document.getElementById("gameOver").style.display = "flex";
       return true
     } else if (this.timeRemaining <= 0) {
