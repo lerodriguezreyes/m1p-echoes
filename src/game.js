@@ -36,6 +36,7 @@ class Game {
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0px";
       console.log("gamePlayScreen closed.");
+      this.timeRemaining += 30
       document.getElementById("gameOver").style.display = "flex";
       return true
     } else if (this.timeRemaining <= 0) {
@@ -43,6 +44,7 @@ class Game {
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0px";
       console.log("gamePlayScreen closed.");
+      this.timeRemaining += 30
       document.getElementById("gameOver").style.display = "flex";
       return true
     } else {
@@ -58,6 +60,7 @@ class Game {
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0p";
       console.log("gamePlayScreen closed.");
+      this.timeRemaining += 30
       document.getElementById("gameWon").style.display = "flex";
       return true
     }
@@ -79,29 +82,22 @@ class Game {
     return roll;
   }
 
-  // Environment check mechanics, NEED TO CHECK KEEPS GIVING PASS.
   envCheck() {
     let playerCheck = this.playerDiceRoll();
 
     if (playerCheck < this.currentRoom.dc) {
       console.log("This current room ----> ", this.currentRoom);
-      console.log("Player life before the check ----> ", this.playerLife);
-      this.playerLife -= 25;
-      console.log("Player life after the check ---->", this.playerLife);
-      this.timeRemaining -= 10;
-      console.log("Time after the check ---->", this.timeRemaining);
+      this.mobCombat();
       console.log("Environment check failed!");
-      if (!this.isGameOver()) {
-        this.currentRoom = this.room[2];
-      }
     } else {
       console.log("Environment check passed!");
       this.timeRemaining -= 5;
-      if (!this.isGameOver()) {
-        this.currentRoom = this.room[2];
-      }
     }
-  }
+
+    if (!this.isGameOver()) {
+        this.currentRoom = this.room[2];
+    }
+}
 
   // Combat mechanics
 
@@ -118,14 +114,15 @@ class Game {
     // EXTRA it would be cool to animate a d20 dice roll here.
     this.timeRemaining -= 15;
     this.isGameOver();
+    alert("Next to you, a faint gray portal materializes, disgorging a monstrous entity comprised of a disturbing fusion of grotesque features: writhing tentacles, numerous eyes, and contorted limbs, instilling profound dread and emanating malevolence with its mere presence.")
     if (mobAttack > playerAttack) {
       console.log("Attack outcome: Mob Wins.");
-      alert("The enemy attacked you and ran off! -25 HP");
+      alert("The enemy attacked you and ran off! You suffer -25 HP.");
       this.playerLife -= 25;
       this.isGameOver();
     } else {
       console.log("Attack outcome: Player Wins.");
-      alert("Well done IronHunter. You slayed an enemy!");
+      alert("Well done IronHunter. You slayed the creature!");
     }
   }
 
