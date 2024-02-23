@@ -1,3 +1,4 @@
+document.getElementsByTagName("audio")[0].style.visibility = "hidden"
 window.addEventListener("load", () => {
   console.log("Connected!");
   let time = 150;
@@ -69,6 +70,7 @@ window.addEventListener("load", () => {
 
   // Player data
   let currentPlayer = prompt("Type your first name:");
+
 
   const players = [
     "Celiel",
@@ -239,7 +241,7 @@ window.addEventListener("load", () => {
   startGame.addEventListener("click", () => {
     game.currentRoom = rooms[0];
     game.roomIndex = 0;
-
+    document.getElementsByTagName("audio")[0].play()
     landingScreen.style.display = "none";
     landingScreen.style.height = "0px";
     gamePlayScreen.style.display = "flex";
