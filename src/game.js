@@ -26,7 +26,7 @@ class Game {
       secondChoice.innerText = this.currentRoom.playerChoice[1];
       narrativeContainer.innerText = this.currentRoom.roomDescription;
     } else {
-      console.log("Room not changing because you're at the end.");
+      console.log("Room not changing because you're at the end. :-)");
     }
   }
 
@@ -34,8 +34,7 @@ class Game {
     if (this.playerLife < 0) {
       console.log("Game Over: Player is dead.");
       gamePlayScreen.style.display = "none";
-      gamePlayScreen.style.height = "0px";
-      console.log("gamePlayScreen closed.");
+      gamePlayScreen.style.height = "0px":
       this.timeRemaining += 30
       document.getElementById("gameOver").style.display = "flex";
       return true
@@ -43,7 +42,6 @@ class Game {
       console.log("Game Over: Time is up!");
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0px";
-      console.log("gamePlayScreen closed.");
       this.timeRemaining += 30
       document.getElementById("gameOver").style.display = "flex";
       return true
@@ -59,7 +57,6 @@ class Game {
       landingScreen.style.height = "0p";
       gamePlayScreen.style.display = "none";
       gamePlayScreen.style.height = "0p";
-      console.log("gamePlayScreen closed.");
       this.timeRemaining += 30
       document.getElementById("gameWon").style.display = "flex";
       return true
@@ -86,7 +83,6 @@ class Game {
     let playerCheck = this.playerDiceRoll();
 
     if (playerCheck < this.currentRoom.dc) {
-      console.log("This current room ----> ", this.currentRoom);
       this.mobCombat();
       console.log("Environment check failed!");
     } else {
@@ -122,7 +118,7 @@ class Game {
       this.isGameOver();
     } else {
       console.log("Attack outcome: Player Wins.");
-      alert("Well done IronHunter. You slayed the creature!");
+      alert("Well done IronHunter. You slayed the creature! Strangely enough, the body vanishes instantly.");
     }
   }
 
