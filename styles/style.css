@@ -1,45 +1,109 @@
 /* CSS Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}                
-
-body {
-  background-color: rgb(0,0,0);
-  color: rgb(27, 54, 5);
-  font-family: helvetica, arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  font-size: 12pt;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-h1 {
-  font-size: 170px;
-  font-family: 'FRIESKA', sans-serif;
-  margin: 0;
-  height: 150px;
-}
-
-h2 {
-  font-size: 75px;
-  font-family: 'Bacasime Antique', sans-serif;
-  margin: 0;
-  height: 85px;    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }                
+  
+  body {
+    background-color: rgb(0,0,0);
+    color: rgb(27, 54, 5);
+    font-family: helvetica, arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 170px;
+    font-family: 'FRIESKA', sans-serif;
+    margin: 0;
+    height: 150px;
+  }
+  
+  h2 {
+    font-size: 75px;
+    font-family: 'Bacasime Antique', sans-serif;
+    margin: 0;
+    height: 85px;    
+    }
+  
+  a {
+    color:#555;
   }
 
-a {
-  color:#555;
+#gamePlayScreen {
+  position: relative;
 }
 
+.gameImageContainer {
+  position: relative;
+  width: 500px;
+  height: 600px;
+  background-image: url('https://shorturl.at/vDM58');
+  background-size: cover;
+  background-position: center;
+}
 
-.view {
+#playerLifeBar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 5px;
+  background-color: red;
+  z-index: 2;
+}
+
+#timeRemaining {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  color: white;
+  z-index: 3;
+}
+
+#narrative {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+  right: 10px;
+  background-color: #55555585;
+  color: white;
+  padding: 10px;
+  z-index: 2;
+}
+
+#choices {
+  position: absolute;
+  text-align: center;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background-color:  #55555585;
+  color: white;
+  padding: 10px;
+  z-index: 2;
+}
+
+button {
+  padding: 10px 20px;
+  color:rgb(56,113,13);
+  font-family: 'Bacasime Antique', sans-serif;
+  font-size:150%;
+  background-color: rgba(240, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+  .view {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,107 +115,45 @@ a {
   border: 0px;
   padding: 25px;
   
-}
-
-#cipherContainer {
-  position: absolute;
-  top: 78%;
-  left: 58%;
-  transform: translate(-50%, -50%);
-}
-
-#cipherButton{
-  position: relative;
-  position: absolute;
-  top: 30%;
-  left: 5%;
-  z-index: 4;
-}
-  /* this is the back image */
-  .image1 {
-    width: 165px;
-    height:165px ;
+  }
+ .died{
+    position: absolute;
+    bottom: 6%;
+  }
+  
+  .end{
+    position: absolute;
+    text-align: justify;
+    background-color: rgba(0, 0, 0, 0.534);
+    bottom: 0%;
+  }
+  
+  .won{
+    position: absolute;
+    top: 1%;
+    left: 10%
+  }
+  
+  .container {
     position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    text-align: right;
+    color: white;}
+
+  
+  footer {
+    color: #555;
+    font-family: helvetica, arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
   }
-  /* this is the front image, should be movable */
-  .image2 {
-    width: 108x;
-    height: 108px;
-    position: absolute;
-    top: 22px;
-    left:30px;
-    z-index: 2;
+  
+  .love {
+    text-align: center;
   }
-
-  /* This is the magnifier. */
-  .image3 {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    z-index: 3;
-    left: 44%;
+  
+  .credits {
+    text-align: right;
+  
   }
-
-  .died{
-  position: absolute;
-  bottom: 6%;
-}
-
-.end{
-  position: absolute;
-  text-align: justify;
-  background-color: rgba(0, 0, 0, 0.534);
-  bottom: 0%;
-}
-
-.won{
-  position: absolute;
-  top: 1%;
-  left: 10%
-}
-
-.container {
-  position: relative;
-  text-align: right;
-  color: white;}
-
-.hud{
-  position: relative;
-  top: 2%;
-  left: 75%;
-  transform: translate(-2%, -2%);
-}
-
-
-
-button {
-  color:rgb(56,113,13);
-  background-color:#00000000;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 150px;
-  height: 45x;
-}
-
-footer {
-  color: #555;
-  font-family: helvetica, arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  font-size: 10pt;
-}
-
-.love {
-  text-align: center;
-}
-
-.credits {
-  text-align: right;
-
-}
+  

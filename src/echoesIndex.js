@@ -1,8 +1,8 @@
 window.addEventListener("load", () => {
   console.log("Connected!");
-  let time = 120;
+  let time = 150;
   let playerLife = 100;
-  let bossLife = 125;
+  let bossLife = 75;
   /******************************************* Html views  *******************************************/
   // View
   const landingScreen = document.getElementById("landingScreen");
@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
     "You end up in a long hallway dimly lit by flickering lights dangling from the ceeling and ensconed into the very foundation of the building. Up ahead you see 3 marked doors with notes. At your right you spot a bowie knife pinning 2 loose sheets of paper. The handwriting on the paper seems familiar. The first note reads: Hi me. Yeah, this is weird. I’m taking to myself here. It’s a weird situation. If it’s any consolation this is not the first time you’ve been here! As best as we gather, this has happened before. Hell, I’d bet it’s been going on ever since ol’ Dustin disappeared. Long story short, Dustin's warning is real and we’re picking up the slack after he went on break. So yeah, we’re stuck here trying to bootstrap a solution from stuff we’ve cobbled up together. We're so close to figuring this out.",
 
     // Destroyed Lab Scene
-    "This expansive room once served as a laboratory. It has clearly seen better days. The walls are marred with ash and scorch marks. All of the equipment is strewn across the benches haphazarly. Amidst the caos, you find a broken chest that holds a barely legible note that reads:  shift by 3.",
+    "This expansive room once served as a laboratory. It has clearly seen better days. The walls are marred with ash and scorch marks. All of the equipment is strewn across the benches haphazarly.",
 
     // Living Cuarters Scene
     "You find yourself in an inmaculately clean room featuring tables with chairs, desks, neatly made beds and a nearly empty closet.",
@@ -96,7 +96,7 @@ window.addEventListener("load", () => {
     return filteredPlayersArray[randomIndex];
   }
 
-  randomName = randomPlayerName();
+  let randomName = randomPlayerName();
 
   // Game data
 
@@ -230,10 +230,6 @@ window.addEventListener("load", () => {
       }
     }, 1000);
   }
-  /******************************** Life bar ********************************/
-  playerLifeContainer.style.width = `${game.playerLife / 2}%`;
-  playerLifeContainer.style.backgroundColor = "red";
-  playerLifeContainer.style.height = `5px`;
 
   /***************************** Gameplay  *************************/
 
@@ -273,9 +269,9 @@ window.addEventListener("load", () => {
           roomImage,
           narrativeContainerDiv
         );
+        console.log("countdown");
         document.getElementById("playerLifeBar").style.visibility = "visible";
         document.getElementById("timeRemaining").style.visibility = "visible";
-        console.log("countdown");
         return;
       } else if (game.roomIndex == 1) {
         alert(
@@ -301,7 +297,19 @@ window.addEventListener("load", () => {
           narrativeContainerDiv
         );
         return;
-      } else if (game.roomIndex == 6) {
+      } else if (game.roomIndex == 4){
+        alert('You feel rested and refreshed!')
+        game.playerLife += 25;
+        game.timeRemaining -= 30;
+        game.changeRoom(
+          choicesContainerDiv,
+          choice1Button,
+          choice2Button,
+          roomImage,
+          narrativeContainerDiv
+        );
+        return; 
+      }else if (game.roomIndex == 6) {
         console.log("Boss battle!!!");
         game.bossCombat();
         return;
@@ -329,9 +337,9 @@ window.addEventListener("load", () => {
           roomImage,
           narrativeContainerDiv
         );
+        console.log("countdown");
         document.getElementById("playerLifeBar").style.visibility = "visible";
         document.getElementById("timeRemaining").style.visibility = "visible";
-        console.log("countdown");
         return;
       } else if (game.roomIndex == 1) {
         alert(
@@ -364,7 +372,12 @@ window.addEventListener("load", () => {
     });
   }); // start game
 
-  // /******************************** Restart Button ********************************/
+    /******************************** Life bar ********************************/
+    playerLifeContainer.style.width = `${game.playerLife}%`;
+    playerLifeContainer.style.backgroundColor = "red";
+    playerLifeContainer.style.height = `5px`;
+
+    /******************************** Restart Button ********************************/
   resetButtonGO.addEventListener("click", () => {
     window.location.reload();
   });
@@ -372,21 +385,5 @@ window.addEventListener("load", () => {
   resetButtonGW.addEventListener("click", () => {
     window.location.reload();
   });
-  /******************************** Cipher Button ********************************/
-  //  let cipherImage2 = document.getElementById('image2')
-  //  let rotation = 0;
-  //  const angle = 15;
-  //  function rotateCipher(){
-  //   rotation = (rotation + angle) % 360;
-  //   image2.style.transform = `rotate(${rotation}deg)`;
-  //  }
-
-  //   cipherButton.addEventListener('click', () => {
-  //     console.log("clicking")
-  //     rotateCipher()
-  //     console.log("image rotated")
-  //   })
-
-  /******************************** Hidden Object ********************************/
-  // document.getElementById()
+  
 }); // end of Index
